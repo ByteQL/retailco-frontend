@@ -1,0 +1,51 @@
+* {
+  font-family: 'Noto Sans', sans-serif !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  overflow-x: hidden;
+  scrollbar-color: #ccc;
+  scrollbar-width: 5px;
+}
+.chakra-form__required-indicator {
+  visibility: hidden;
+}
+@mixin markerStyles {
+  color: white;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+}
+.chakra-form__error-message {
+  position: relative;
+  margin-left: 26px;
+  font-size: 13px !important;
+  line-height: 16px;
+  &::before {
+    content: '!';
+    background-color: #e94560;
+    left: -26px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    @include markerStyles();
+  }
+}
+
+.chakra-menu__menuitem {
+  &.selected {
+    background-color: #e2e8f0;
+    font-weight: bold;
+  }
+}
+.rco-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include markerStyles();
+}
