@@ -2,13 +2,13 @@ import React, { Component, Ref, RefObject } from 'react';
 import { Select, SelectProps } from '@chakra-ui/react';
 
 interface Props {
-  innerRef?: any;
+  ref?: any;
 }
 
 class BaseSelectInner extends Component<Props & SelectProps, any> {
   render() {
     return (
-      <Select {...this.props} ref={this.props.innerRef}>
+      <Select {...this.props} ref={this.props.ref}>
         {this.props.children}
       </Select>
     );
@@ -16,7 +16,7 @@ class BaseSelectInner extends Component<Props & SelectProps, any> {
 }
 
 const BaseSelect = React.forwardRef((props: Props & SelectProps, ref) => (
-  <BaseSelectInner innerRef={ref} {...props} />
+  <BaseSelectInner ref={ref} {...props} />
 ));
 BaseSelect.defaultProps = {
   height: '55px',

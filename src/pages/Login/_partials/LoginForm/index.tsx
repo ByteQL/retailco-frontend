@@ -38,6 +38,10 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
   const [password, setPassword] = useState('');
   const [isLoggingIn, setIsLoggingIn] = useState(false);
 
+  useEffect(() => {
+    isAuthenticated && history.push(routePaths.dashBoard);
+  }, [isAuthenticated]);
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     setIsLoggingIn(true);
@@ -53,12 +57,7 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
         setIsLoggingIn(false);
       });
   };
-  const DashboardLoader: React.FC = () => {
-    history.push(routePaths.dashBoard);
-    return <></>;
-  };
 
-  if (isAuthenticated) return <DashboardLoader />;
   return (
     <Box>
       <LogoWithName />

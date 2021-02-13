@@ -85,6 +85,7 @@ const BaseMenu: React.FC<Props> = ({
       <MenuList>
         {options.map(({ label, value }) => (
           <MenuItem
+            key={value}
             value={value}
             as="option"
             role="option"

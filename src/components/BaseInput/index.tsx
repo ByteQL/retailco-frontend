@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { Input, InputProps } from '@chakra-ui/react';
 
 interface Props {
-  innerRef?: any;
+  ref?: any;
 }
 
 class BaseInputInner extends Component<Props & InputProps, any> {
   render() {
-    return <Input {...this.props} ref={this.props.innerRef} />;
+    return <Input {...this.props} ref={this.props.ref} />;
   }
 }
 const BaseInput = React.forwardRef((props: Props & InputProps, ref) => (
-  <BaseInputInner innerRef={ref} {...props} />
+  <BaseInputInner ref={ref} {...props} />
 ));
 BaseInput.defaultProps = {
   height: '55px',
