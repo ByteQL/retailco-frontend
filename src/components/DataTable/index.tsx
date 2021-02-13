@@ -37,8 +37,9 @@ const DataTable: React.FC<DataTableProps & BoxProps> = ({
       {title && <TableCaption>{title}</TableCaption>}
       <Thead>
         <Tr>
-          {columns.map(({ title, width }) => (
+          {columns.map(({ title, width }, i) => (
             <Th
+              key={i}
               w={width}
               // maxW={width || 150}
               textTransform="unset"
