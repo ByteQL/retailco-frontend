@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-export default {
+const personalInformationFormValidator = {
   fullname: yup
     .string()
     .trim()
@@ -12,3 +12,4 @@ export default {
     .min(9, 'Please enter a valid number')
     .max(15, 'Please enter a valid number'),
 };
+export default personalInformationFormValidator;

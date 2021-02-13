@@ -3,16 +3,20 @@ import React from 'react';
 
 // third party components
 import { Box, HStack, Link } from '@chakra-ui/react';
+import { History } from 'history';
 
 // components
 import LoginForm from './_partials/LoginForm';
 import LoginBanner from './_partials/LoginBanner';
 
-const Login: React.FC = ({}) => {
+interface Props {
+  history: History;
+}
+const Login: React.FC<Props> = ({ history }) => {
   return (
     <Box p="100px">
       <HStack>
-        <LoginForm />
+        <LoginForm history={history} />
         <LoginBanner />
       </HStack>
       <Box as="footer" mt="70px" textAlign="center">

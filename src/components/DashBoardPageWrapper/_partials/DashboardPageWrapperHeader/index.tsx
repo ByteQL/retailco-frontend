@@ -1,14 +1,24 @@
 // react
 import React, { useState } from 'react';
 
-// third party components
-import { Box, Button, Flex, HStack } from '@chakra-ui/react';
-import BaseMenu from 'components/BaseMenu';
+// third party libraries
 import dayjs from 'dayjs';
+import { Link as RouterLink } from 'react-router-dom';
+
+// redux
+import { connect } from 'react-redux';
+import { logoutUser } from 'redux/actions/auth';
+
+// third party components
+import { Box, Button, Flex, HStack, Link } from '@chakra-ui/react';
 import IconWrapper from '../IconWarapper';
 import { MdPersonOutline } from 'react-icons/md';
+import BaseMenu from 'components/BaseMenu';
 
-const DashboardPageWrapperHeader: React.FC = () => {
+interface Props {
+  logoutUser: () => any;
+}
+const DashboardPageWrapperHeader: React.FC<Props> = ({ logoutUser }) => {
   const [store, setStore] = useState('0');
 
   return (
@@ -33,12 +43,15 @@ const DashboardPageWrapperHeader: React.FC = () => {
           </Button>
         </HStack>
         <HStack>
-          <IconWrapper marginLeft="auto">
-            <MdPersonOutline size="18px" />
-          </IconWrapper>
+          <Link as={RouterLink} to="/" onClick={(_) => logoutUser()}>
+            <IconWrapper marginLeft="auto">
+              <MdPersonOutline size="18px" />
+            </IconWrapper>
+          </Link>
         </HStack>
       </Flex>
     </Box>
   );
 };
-export default DashboardPageWrapperHeader;
+
+export default connect(null, { logoutUser })(DashboardPageWrapperHeader);

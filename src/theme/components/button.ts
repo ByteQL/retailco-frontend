@@ -14,6 +14,13 @@ const button = {
         backgroundColor: 'brand.primary',
         color: '#fff',
       },
+      _loading: {
+        backgroundColor: 'brand.primary',
+        color: '#fff',
+        '&[disabled]:hover': {
+          backgroundColor: '#094C8D !important',
+        },
+      },
     },
     outline: {
       backgroundColor: '#fff',
