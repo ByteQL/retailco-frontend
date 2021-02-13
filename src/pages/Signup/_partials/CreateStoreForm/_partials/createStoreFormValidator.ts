@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-export default {
+const createStoreFormValidator = {
   storename: yup
     .string()
     .trim()
@@ -13,3 +13,4 @@ export default {
     .max(14, 'Please enter a valid number'),
   storeaddress: yup.string().trim().required('Please enter your store address'),
 };
+export default createStoreFormValidator;
