@@ -33,8 +33,8 @@ const Signup: React.FC<Props> = ({}) => {
     <Box>
       <Flex flexDir={'row'} minH="100vh">
         <SideBanner />
-        <Box width="1175px" padding="60px">
-          <VStack spacing="60px">
+        <Box width="117.5rem" padding="6rem">
+          <VStack spacing="6rem">
             <Box>
               <Heading size="xl" as="h1">
                 Welcome

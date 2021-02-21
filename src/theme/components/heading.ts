@@ -4,7 +4,7 @@ const heading = {
   },
   sizes: {
     lg: {
-      fontSize: '24px',
+      fontSize: '2.4rem',
     },
   },
 };

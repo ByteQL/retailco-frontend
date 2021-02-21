@@ -15,9 +15,9 @@ const ForgotPasswordBanner = () => {
         pos="absolute"
         right="0"
         top="0"
-        w="434px"
-        h="470px"
-        p="50px 80px"
+        w="43.4rem"
+        h="47rem"
+        p="5rem 8rem"
         bg={`url(${ForgotPasswordRearImage}) no-repeat center`}
         bgSize="cover"
         color="#fff"
@@ -26,7 +26,7 @@ const ForgotPasswordBanner = () => {
           Ensure that you provide the email you registered with. You will
           receive a password reset link.
         </Box>
-        <Box mt="16px" w="120px" h="120px">
+        <Box mt="1.6rem" w="12rem" h="12rem">
           <Image src="/img/key.png" />
         </Box>
       </Box>

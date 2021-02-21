@@ -21,8 +21,8 @@ import BaseInput from 'components/BaseInput';
 import routePaths from 'utils/routePaths';
 const LoginForm = () => {
   return (
-    <Box w="500px">
-      <Center mt="240px">
+    <Box w="50rem">
+      <Center mt="24rem">
         <LogoWithName />
       </Center>
 
@@ -33,27 +33,27 @@ const LoginForm = () => {
           </Heading>
         </Center>
       </Box>
-      <Center mt="56px" w="100%">
+      <Center mt="5.6rem" w="100%">
         <FormControl id="email">
           <FormLabel htmlFor="email">Email Address</FormLabel>
           <BaseInput type="email" name="email" />
         </FormControl>
       </Center>
-      <Box mt="86px" textAlign="center">
+      <Box mt="8.6rem" textAlign="center">
         <Center>
           <Button type="submit" variant="solid">
             Send request
           </Button>
         </Center>
 
-        <Center mt="20px">
+        <Center mt="2rem">
           I remember now.{' '}
           <Link
             as={RouterLink}
             to={routePaths.login}
             fontWeight="bold"
             color="brand.primary"
-            ml="5px"
+            ml=".5rem"
           >
             <Box as="strong">Sign in</Box>
           </Link>

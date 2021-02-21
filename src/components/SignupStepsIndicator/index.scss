@@ -2,14 +2,14 @@
   &--has-tail {
     position: relative;
     &::after {
-      content: "";
+      content: '';
       display: block;
       position: absolute;
-      width: 220px;
-      height: 0.5px;
+      width: 22rem;
+      height: 0.05rem;
       background: lightgray;
       opacity: 0.5 !important;
-      left: 40px;
+      left: 4rem;
     }
   }
 }

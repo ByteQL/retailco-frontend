@@ -18,9 +18,9 @@ const SignupStepsButtons: React.FC<Props> = ({
 }) => {
   const isLastStep = step === stepList.length - 1;
   return (
-    <Box width="890px" mt="60px">
+    <Box width="89rem" mt="6rem">
       <SimpleGrid columns={3} alignItems="center">
-        <Box h="60px" w="100px">
+        <Box h="6rem" w="10rem">
           {step ? (
             <Button
               variant="borderless"

@@ -19,7 +19,7 @@ const BaseSelect = React.forwardRef((props: Props & SelectProps, ref) => (
   <BaseSelectInner ref={ref} {...props} />
 ));
 BaseSelect.defaultProps = {
-  height: '55px',
+  height: '5rem',
 };
 
 export default BaseSelect;

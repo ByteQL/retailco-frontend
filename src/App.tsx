@@ -13,11 +13,11 @@ import './App.scss';
 // components
 import Signup from 'pages/Signup';
 import Login from 'pages/Login';
+import ForgotPassword from 'pages/ForgotPassword';
 
 // theme
 import theme from 'theme';
 import routePaths from 'utils/routePaths';
-import FrogotPassword from 'pages/ForgotPassword';
 import DashboardPageWrapper from 'components/DashBoardPageWrapper';
 
 // UI components
@@ -47,6 +47,11 @@ export const App = () => {
             <Router>
               <Switch>
                 <Route exact path={routePaths.signUp} component={Signup} />
+                <Route
+                  exact
+                  path={routePaths.forgotPassword}
+                  component={ForgotPassword}
+                />
                 {dashboardPages.map(({ path, Component }, i) => (
                   <Route
                     key={i}
@@ -62,11 +67,6 @@ export const App = () => {
                 <Route
                   path={routePaths.login}
                   render={(props) => <Login {...props} />}
-                />
-                <Route
-                  exact
-                  path={routePaths.forgotPassword}
-                  component={FrogotPassword}
                 />
               </Switch>
             </Router>
