@@ -44,7 +44,8 @@ const SignupStepIndicator: React.FC<Props> = ({ stepList, step }) => {
               key={index}
               className="step-wrapper"
               mr={stepList.length - 1 > index ? '8rem' : 0}
-              width="17.2rem"
+              w={{ base: '100%', lg: '17.2rem' }}
+              d={{ base: 'none', lg: 'block' }}
             >
               <Box>
                 <Center textAlign="center">

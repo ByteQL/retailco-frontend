@@ -33,12 +33,10 @@ const Signup: React.FC<Props> = ({}) => {
     <Box>
       <Flex flexDir={'row'} minH="100vh">
         <SideBanner />
-        <Box width="117.5rem" padding="6rem">
-          <VStack spacing="6rem">
-            <Box>
-              <Heading size="xl" as="h1">
-                Welcome
-              </Heading>
+        <Box w={{ base: 'full', xl: '77%' }} padding="3rem">
+          <VStack spacing="3rem">
+            <Box textAlign="center">
+              <Heading as="h2">Welcome</Heading>
               <Heading size="sm" as="h2">
                 {signupStep === stepList.length - 1
                   ? 'Finally!'

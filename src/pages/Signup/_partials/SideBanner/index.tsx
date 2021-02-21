@@ -17,14 +17,14 @@ const SideBanner = () => (
     minH={'100vh'}
     w={{ base: 0, xl: '23%' }}
     bg={`linear-gradient(to bottom, #F2BC8D ,#F1984B)`}
-    p="6rem 0"
+    p="3rem 0"
   >
     <Box
-      h="100vh"
+      h="80%"
       pos="relative"
       bgImg={`url(${SideBannerImage})`}
       overflow="hidden"
-      bgSize="120% 98vh"
+      bgSize="120% 92%"
       bgRepeat="no-repeat"
       bgPos="center"
     >
