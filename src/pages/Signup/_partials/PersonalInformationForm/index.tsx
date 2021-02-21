@@ -34,8 +34,20 @@ const PersonalInformation: React.FC<SignupFormProps> = ({
 }) => {
   const genders = ['male', 'female'];
   const [selectedGender, setSelectedGender] = useState('male');
-  const schema = yup.object().shape(personanalInformationFormValidator);
+  const schema = yup.object({
+    fullname: yup
+      .string()
+      .trim()
+      // .required('Your name will help us address you correctly')
+      .matches(/[abcdefghijklmnopqrstuvwxyz]+/, 'Please enter a valid name'),
+    phonenumber: yup
+      .string()
+      // .required('Phone number is required')
+      .min(9, 'Please enter a valid number')
+      .max(15, 'Please enter a valid number'),
+  });
   const { register, handleSubmit, errors, setValue } = useForm({
+    mode: 'onBlur',
     resolver: yupResolver(schema),
   });
   useEffect(() => {
