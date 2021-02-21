@@ -19,6 +19,7 @@ export default {
     },
     grey: {
       '100': '#95989A',
+      verylightgrey: '#E0E0E0',
     },
   },
   fontSizes: {
