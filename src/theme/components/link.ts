@@ -8,7 +8,7 @@ const link = {
 
   variants: {
     sideMenuItem: {
-      width: '25.5rem',
+      width: '95%',
       lineHeight: '2.2rem',
       display: 'flex',
       padding: '1.5rem 6.5rem',

@@ -44,7 +44,7 @@ const SideMenu: React.FC<Props> = ({}) => {
   );
   return (
     <Box
-      width="25.5rem"
+      width={{ lg: '20%', xl: '18%' }}
       h="100vh"
       boxShadow="0 .3rem .6rem #00000029"
       borderRadius="0 2rem 2rem 0"
