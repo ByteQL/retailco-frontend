@@ -50,6 +50,7 @@ const button = {
     lg: {
       padding: '1.7rem 5rem !important',
       height: '5rem',
+      fontSize: 'md',
     },
     xl: {
       padding: '2.4rem 11rem !important',
