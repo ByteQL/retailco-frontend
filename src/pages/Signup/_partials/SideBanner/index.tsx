@@ -5,7 +5,7 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 // third party components
-import { Box, Center, Heading, Image, Link, Text } from '@chakra-ui/react';
+import { Box, Center, Link, Text } from '@chakra-ui/react';
 
 // images
 import SideBannerImage from 'svg/side-banner-image.svg';
@@ -15,7 +15,7 @@ import routePaths from 'utils/routePaths';
 const SideBanner = () => (
   <Box
     minH={'100vh'}
-    w={[0, 425]}
+    w={{ base: 0, xl: '23%' }}
     bg={`linear-gradient(to bottom, #F2BC8D ,#F1984B)`}
     p="6rem 0"
   >
