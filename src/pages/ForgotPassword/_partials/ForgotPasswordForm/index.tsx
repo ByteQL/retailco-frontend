@@ -33,7 +33,7 @@ const LoginForm = () => {
           </Heading>
         </Center>
       </Box>
-      <Center mt="5.6rem" w="100%">
+      <Center mt="5.6rem" w="full">
         <FormControl id="email">
           <FormLabel htmlFor="email">Email Address</FormLabel>
           <BaseInput type="email" name="email" />

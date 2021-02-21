@@ -32,7 +32,7 @@ const SideBanner = () => (
         <LogoWithName />
       </Center>
 
-      <Text size="sm" pos="absolute" w="100%" bottom="0" textAlign="center">
+      <Text size="sm" pos="absolute" w="full" bottom="0" textAlign="center">
         Already on retailco,{' '}
         <Link as={RouterLink} color="brand.primary" to={routePaths.login}>
           <Box as="strong">Sign in</Box>

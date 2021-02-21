@@ -33,7 +33,7 @@ const DataTable: React.FC<DataTableProps & BoxProps> = ({
   ...rest
 }) => {
   return (
-    <Table variant="unstyled" maxW="100%" overflow="scroll" {...rest}>
+    <Table variant="unstyled" maxw="full" overflow="scroll" {...rest}>
       {title && <TableCaption>{title}</TableCaption>}
       <Thead>
         <Tr>
