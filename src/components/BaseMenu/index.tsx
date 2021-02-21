@@ -55,12 +55,12 @@ const BaseMenu: React.FC<Props> = ({
         size="md"
         leftIcon={
           <FaStore
-            style={{ color: '#011624', width: '18px', marginRight: '10px' }}
+            style={{ color: '#011624', width: '1.8rem', marginRight: '1rem' }}
           />
         }
         rightIcon={
           <FaChevronDown
-            style={{ margin: '0px 10px', width: '14px', color: '#011624' }}
+            style={{ margin: '0 1rem', width: '1.4rem', color: '#011624' }}
           />
         }
         variant="unstyled"
@@ -72,7 +72,7 @@ const BaseMenu: React.FC<Props> = ({
         pos="relative"
         {...menuButtonProps}
       >
-        <Box minW="100px">
+        <Box minW="10rem">
           {selectedObj ? (
             <Text color="brand.primary" fontWeight="bold" d="contents">
               {selectedObj.label}

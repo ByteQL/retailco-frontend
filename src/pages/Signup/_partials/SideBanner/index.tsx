@@ -17,7 +17,7 @@ const SideBanner = () => (
     minH={'100vh'}
     w={[0, 425]}
     bg={`linear-gradient(to bottom, #F2BC8D ,#F1984B)`}
-    p="60px 0px"
+    p="6rem 0"
   >
     <Box
       h="100vh"

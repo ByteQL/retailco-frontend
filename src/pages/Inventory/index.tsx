@@ -25,8 +25,8 @@ const Inventory: React.FC<Props> = ({}) => {
       dataIndex: 'image',
       render: (record) => (
         <Box
-          w="20px"
-          h="20px"
+          w="2rem"
+          h="2rem"
           bg={`url(${record})`}
           bgSize="contain"
           bgRepeat="no-repeat"
@@ -43,14 +43,14 @@ const Inventory: React.FC<Props> = ({}) => {
       title: '',
       dataIndex: 'watch',
       render: (record) =>
-        record && <RiShieldCheckFill size="18px" color="#69E4A6" />,
+        record && <RiShieldCheckFill size="1.8rem" color="#69E4A6" />,
     },
     { title: 'Item unit', dataIndex: 'unit' },
     {
       title: 'Quantity',
       dataIndex: 'quantity',
       render: (record) => (
-        <Tag bg="rgba(105, 228, 166, 0.2)" p="4px 20px">
+        <Tag bg="rgba(105, 228, 166, 0.2)" p=".4rem 2rem">
           {formatWithCommas(record)}
         </Tag>
       ),
@@ -101,17 +101,17 @@ const Inventory: React.FC<Props> = ({}) => {
     <Box>
       <Flex alignItems="center">
         <Heading size="lg">Inventory</Heading>
-        <Button variant="goldOutline" size="md" leftIcon={<FaPlus />} ml="50px">
+        <Button variant="goldOutline" size="md" leftIcon={<FaPlus />} ml="5rem">
           Add New Item
         </Button>
-        <Tag bg="rgba(9, 76, 141, 0.1)" p="15px 20px" m="0 auto">
+        <Tag bg="rgba(9, 76, 141, 0.1)" p="1.5rem 2rem" m="0 auto">
           <Text size="sm">Total stock value:</Text>&nbsp;
           <Heading size="sm">
             &#x20A6;&nbsp;{formatWithCommas(999000000000)}
           </Heading>
         </Tag>
       </Flex>
-      <DataTable columns={columns} dataSource={dataSource} mt="50px" />
+      <DataTable columns={columns} dataSource={dataSource} mt="5rem" />
     </Box>
   );
 };

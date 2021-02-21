@@ -18,6 +18,8 @@ import {
   FormLabel,
   Button,
   Link,
+  Center,
+  Flex,
 } from '@chakra-ui/react';
 
 // components
@@ -59,16 +61,26 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
   };
 
   return (
-    <Box>
+    <Flex
+      flexDirection="column"
+      p={['5rem 2rem', '5rem', '7vh 10rem']}
+      w={{ base: '100%', xl: '50%' }}
+      alignItems={{ base: 'center', xl: 'flex-start' }}
+    >
       <LogoWithName />
       <Box>
-        <Heading as="h1" size="xl" lineHeight="xl" mt="20px">
-          Welcome
+        <Heading
+          as="h2"
+          fontSize={{ sm: 'lg', xl: 'xl' }}
+          lineHeight="xl"
+          mt="1rem"
+        >
+          Welcome back
         </Heading>
         <Heading size="sm">please enter you login details</Heading>
       </Box>
-      <Box as="form" mt="50px" w="470px" onSubmit={handleSubmit}>
-        <VStack spacing="20px">
+      <Box as="form" mt="6vh" w="47rem" onSubmit={handleSubmit}>
+        <VStack spacing="1.8rem">
           <FormControl id="email">
             <FormLabel htmlFor="email">Email Address</FormLabel>
             <BaseInput
@@ -86,7 +98,7 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
             />
           </FormControl>
         </VStack>
-        <Box w="288px" mt="70px" textAlign="center">
+        <Box w="28.8rem" mt="6vh" textAlign="center">
           <Button
             type="submit"
             w="100%"
@@ -96,20 +108,22 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
           >
             Login
           </Button>
-        </Box>
-        <Box mt="20px">
-          <Link>Forgot Password?</Link>
-        </Box>
-        <Box mt="100px">
-          <Box as="p">
-            New to RetailCo?{' '}
-            <Link as={RouterLink} to={routePaths.signUp} color="#FF7700">
-              Sign up
+          <Center mt="2rem" fontSize="md">
+            <Link as={RouterLink} to={routePaths.forgotPassword}>
+              Forgot Password?
             </Link>
+          </Center>
+          <Box mt="8vh">
+            <Box as="p">
+              New to RetailCo?{' '}
+              <Link as={RouterLink} to={routePaths.signUp} color="#FF7700">
+                Sign up
+              </Link>
+            </Box>
           </Box>
         </Box>
       </Box>
-    </Box>
+    </Flex>
   );
 };
 

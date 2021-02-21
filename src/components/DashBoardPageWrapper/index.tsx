@@ -12,9 +12,9 @@ const DashboardPageWrapper: React.FC = ({ children }) => {
     <Box bg="blue.100" width="100%">
       <Flex>
         <SideMenu />
-        <Box p="50px" flex="1 1 0%" minH="100vh">
+        <Box p="5rem" flex="1 1 0%" minH="100vh">
           <DashboardPageWrapperHeader />
-          <Box as="main" p="50px 0px">
+          <Box as="main" p="5rem 0">
             {children}
           </Box>
         </Box>

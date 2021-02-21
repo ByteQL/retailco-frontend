@@ -21,10 +21,10 @@ const SignupStepIndicator: React.FC<Props> = ({ stepList, step }) => {
               <Circle
                 bg={isActive ? 'brand.primary' : 'white'}
                 color={isActive ? 'white' : 'brand.verylightgrey'}
-                w={'40px'}
-                h={'40px'}
+                w={'4rem'}
+                h={'4rem'}
                 fontSize="lg"
-                border="1px solid"
+                border=".1rem solid"
                 borderColor={isActive ? 'brand.bronze' : 'brand.verylightgrey'}
                 position="relative"
                 className={`step-circle${
@@ -43,8 +43,8 @@ const SignupStepIndicator: React.FC<Props> = ({ stepList, step }) => {
             <Box
               key={index}
               className="step-wrapper"
-              mr={stepList.length - 1 > index ? '80px' : 0}
-              width="172px"
+              mr={stepList.length - 1 > index ? '8rem' : 0}
+              width="17.2rem"
             >
               <Box>
                 <Center textAlign="center">
@@ -54,7 +54,7 @@ const SignupStepIndicator: React.FC<Props> = ({ stepList, step }) => {
                   size="sm"
                   color={isActive ? 'black' : 'brand.verylightgrey'}
                   fontWeight={isActive ? 700 : 400}
-                  mt="15px"
+                  mt="1.5rem"
                   textAlign="center"
                 >
                   {title}

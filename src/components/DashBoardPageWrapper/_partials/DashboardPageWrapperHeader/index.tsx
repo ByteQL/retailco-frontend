@@ -23,8 +23,8 @@ const DashboardPageWrapperHeader: React.FC<Props> = ({ logoutUser }) => {
 
   return (
     <Box>
-      <Flex spacing="55px" alignItems="flex-end" justifyContent="space-between">
-        <HStack spacing="55px">
+      <Flex spacing="5rem" alignItems="flex-end" justifyContent="space-between">
+        <HStack spacing="5rem">
           <Box>
             <Box>{dayjs().format('DD MMMM, YYYY')}</Box>
             <BaseMenu
@@ -45,7 +45,7 @@ const DashboardPageWrapperHeader: React.FC<Props> = ({ logoutUser }) => {
         <HStack>
           <Link as={RouterLink} to="/" onClick={(_) => logoutUser()}>
             <IconWrapper marginLeft="auto">
-              <MdPersonOutline size="18px" />
+              <MdPersonOutline size="1.8rem" />
             </IconWrapper>
           </Link>
         </HStack>

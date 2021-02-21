@@ -39,7 +39,7 @@ const LoginDetailsForm: React.FC<SignupFormProps> = ({
   return (
     <form onSubmit={handleSubmit(handleSubmitClick)}>
       <Center>
-        <Box w="380px">
+        <Box w="38rem">
           <VStack spacing={30}>
             <FormControl id="email" isInvalid={errors.email}>
               <FormLabel>Email</FormLabel>

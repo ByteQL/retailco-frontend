@@ -93,8 +93,8 @@ const CreateStore: React.FC<SignupFormProps> = ({
   return (
     <form onSubmit={handleSubmit(validateSubmit)}>
       <Center>
-        <Box w={'890px'}>
-          <SimpleGrid spacingX="106px" spacingY="30px" columns={2} w="100%">
+        <Box w={'89rem'}>
+          <SimpleGrid spacingX="10.6rem" spacingY="3rem" columns={2} w="100%">
             <FormControl id="storename" isInvalid={errors.storename}>
               <FormLabel>Store Name</FormLabel>
               <BaseInput

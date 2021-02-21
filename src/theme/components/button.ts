@@ -3,7 +3,7 @@ const button = {
     textTransform: 'capitalize',
     fontWeight: 'normal',
     _focus: {
-      boxShadow: '0 0 0 3px #094C8D',
+      boxShadow: '0 0 0 .3rem #094C8D',
     },
   },
   variants: {
@@ -24,13 +24,13 @@ const button = {
     },
     outline: {
       backgroundColor: '#fff',
-      border: '1px solid',
-      _hover: { backgroundColor: '#fff', border: '1px solid' },
+      border: '.1rem solid',
+      _hover: { backgroundColor: '#fff', border: '.1rem solid' },
     },
     goldOutline: {
       bg: 'transparent',
-      border: '1px solid #FF6B00',
-      _hover: { bg: 'transparent', border: '1px solid #FF6B00' },
+      border: '.1rem solid #FF6B00',
+      _hover: { bg: 'transparent', border: '.1rem solid #FF6B00' },
     },
     black: {
       backgroundColor: 'black',
@@ -43,17 +43,17 @@ const button = {
   },
   sizes: {
     sm: {
-      paddingLeft: '40px',
-      paddingRight: '40px',
-      height: '35px',
+      paddingLeft: '4rem',
+      paddingRight: '4rem',
+      height: '3.5rem',
     },
     lg: {
-      padding: '17px 51px !important',
-      height: '55px',
+      padding: '1.7rem 5rem !important',
+      height: '5rem',
     },
     xl: {
-      padding: '24px 113px !important',
-      height: '70px',
+      padding: '2.4rem 11rem !important',
+      height: '6rem',
     },
   },
   // The default size and variant values

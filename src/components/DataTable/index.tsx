@@ -46,7 +46,7 @@ const DataTable: React.FC<DataTableProps & BoxProps> = ({
               fontWeight="600"
               letterSpacing="unset"
               fontSize="sm"
-              lineHeight="20px"
+              lineHeight="2rem"
             >
               {title}
             </Th>

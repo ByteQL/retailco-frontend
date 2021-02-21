@@ -1,26 +1,31 @@
 const link = {
-  baseStyle: {},
+  baseStyle: {
+    fontSize: 'inherit',
+    _focus: {
+      boxShadow: 'none',
+    },
+  },
+
   variants: {
     sideMenuItem: {
-      width: '255px',
-      lineHeight: '22px',
+      width: '25.5rem',
+      lineHeight: '2.2rem',
       display: 'flex',
-      padding: '15px 65px',
+      padding: '1.5rem 6.5rem',
       fontWeight: 'bold',
       _hover: {
         textDecoration: 'none',
       },
       _focus: {
-        outline: 'none',
-        boxShadow: '0 0 0 .5px black',
+        boxShadow: 'none',
       },
       '&.menu-item--active': {
-        padding: '15px 40px',
+        padding: '1.5rem 4rem',
         backgroundColor: 'black',
         color: '#fff',
-        borderRadius: '10px',
+        borderRadius: '1rem',
         textAlign: 'center',
-        marginLeft: '25px',
+        marginLeft: '2.5rem',
         position: 'relative',
 
         _hover: {
@@ -32,26 +37,22 @@ const link = {
           display: 'block',
           content: '""',
           position: 'absolute',
-          left: '-28px',
+          left: '-2.8rem',
           top: '0',
           backgroundColor: 'black',
           height: '100%',
-          width: '10px',
-          borderRadius: '0px 10px 10px 0px;',
+          width: '1rem',
+          borderRadius: '0 1rem 1rem 0;',
         },
       },
       '.menu-item__icon': {
-        height: '22px',
-        lineHeight: '22px',
-        marginRight: '10px',
+        height: '2.2rem',
+        lineHeight: '2.2rem',
+        marginRight: '1rem',
       },
     },
   },
 
   // The default size and variant values
-  //   defaultProps: {
-  //     size: 'md',
-  //     variant: 'outline',
-  //   },
 };
 export default link;

@@ -14,7 +14,7 @@ const BaseInput = React.forwardRef((props: Props & InputProps, ref) => (
   <BaseInputInner ref={ref} {...props} />
 ));
 BaseInput.defaultProps = {
-  height: '55px',
+  height: '5rem',
 };
 
 export default BaseInput;

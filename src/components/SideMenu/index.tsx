@@ -44,13 +44,13 @@ const SideMenu: React.FC<Props> = ({}) => {
   );
   return (
     <Box
-      width="255px"
-      minH="100vh"
-      boxShadow="0px 3px 6px #00000029"
-      borderRadius="0px 20px 20px 0px"
+      width="25.5rem"
+      h="100vh"
+      boxShadow="0 .3rem .6rem #00000029"
+      borderRadius="0 2rem 2rem 0"
       bg="white"
     >
-      <Center pt="35px" pb="50px" justifyItems="center">
+      <Center pt="3.5rem" pb="5rem" justifyItems="center">
         <LogoWithName />
       </Center>
       {renderList(listOne)}

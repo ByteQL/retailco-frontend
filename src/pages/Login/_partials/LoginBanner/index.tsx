@@ -10,21 +10,22 @@ import LoginRearImage from 'svg/login-rear-image.svg';
 
 const LoginBanner = () => {
   return (
-    <Box>
-      <Box pos="absolute" right="0" top="190px" width="660px">
+    <Box pos="relative" w="50%" ml="auto" d={{ base: 'none', xl: 'block' }}>
+      <Box pos="absolute" right="0" top="14rem" width="55rem">
         <LoginFrontImage />
       </Box>
       <Box
         pos="absolute"
         right="0"
         top="0"
-        w="434px"
-        h="470px"
-        p="50px 80px"
+        w="35rem"
+        h="35rem"
+        p="3rem 5rem"
         bg={`url(${LoginRearImage}) no-repeat center`}
         bgSize="cover"
         color="#fff"
         zIndex="-1"
+        fontSize="sm"
       >
         <Box as="p">
           Manage stock items, optimize inventory, know your best sellers, make
