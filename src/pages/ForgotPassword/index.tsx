@@ -13,7 +13,7 @@ const ForgotPassword: React.FC = () => {
   return (
     <Box p="10rem">
       <FrogotPasswordBanner />
-      <Center w="100%">
+      <Center w="full">
         <FrogotPasswordForm />
       </Center>
       <Footer />

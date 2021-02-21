@@ -36,9 +36,7 @@ export default {
     '8xl': '7.5rem',
     '9xl': '8rem',
   },
-  lineHeights: {
-    xl: '5.5rem',
-  },
+
   defaultProps: {
     fontSizes: 'md',
   },

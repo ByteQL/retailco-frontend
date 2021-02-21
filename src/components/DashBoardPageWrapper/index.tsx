@@ -9,7 +9,7 @@ import DashboardPageWrapperHeader from './_partials/DashboardPageWrapperHeader';
 
 const DashboardPageWrapper: React.FC = ({ children }) => {
   return (
-    <Box bg="blue.100" width="100%">
+    <Box bg="blue.100" w="full">
       <Flex>
         <SideMenu />
         <Box p="5rem" flex="1 1 0%" minH="100vh">

@@ -20,6 +20,7 @@ import {
   Link,
   Center,
   Flex,
+  Stack,
 } from '@chakra-ui/react';
 
 // components
@@ -63,24 +64,28 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
   return (
     <Flex
       flexDirection="column"
-      p={['5rem 2rem', '5rem', '7vh 10rem']}
-      w={{ base: '100%', xl: '50%' }}
+      p={['5rem 2rem', '5rem', '5vh 10rem']}
+      w={{ base: '80%', xl: '50%' }}
       alignItems={{ base: 'center', xl: 'flex-start' }}
+      m="0 auto"
+      textAlign={{ base: 'center', xl: 'left' }}
     >
       <LogoWithName />
       <Box>
-        <Heading
-          as="h2"
-          fontSize={{ sm: 'lg', xl: 'xl' }}
-          lineHeight="xl"
-          mt="1rem"
-        >
+        <Heading as="h2" fontSize={{ base: 'lg', xl: 'xl' }} m="1rem 0">
           Welcome back
         </Heading>
-        <Heading size="sm">please enter you login details</Heading>
+        <Heading size="sm" fontSize={{ base: 'xs', lg: 'sm' }}>
+          please enter you login details
+        </Heading>
       </Box>
-      <Box as="form" mt="6vh" w="47rem" onSubmit={handleSubmit}>
-        <VStack spacing="1.8rem">
+      <Box
+        as="form"
+        mt="6vh"
+        w={{ base: '100%', xl: '47rem' }}
+        onSubmit={handleSubmit}
+      >
+        <Stack spacing="1.8rem">
           <FormControl id="email">
             <FormLabel htmlFor="email">Email Address</FormLabel>
             <BaseInput
@@ -97,14 +102,14 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </FormControl>
-        </VStack>
-        <Box w="28.8rem" mt="6vh" textAlign="center">
+        </Stack>
+        <Box w={{ base: '100%', xl: '28rem' }} mt="8vh">
           <Button
             type="submit"
-            w="100%"
             variant="solid"
             isLoading={isLoggingIn}
             loadingText="Please wait..."
+            w="full"
           >
             Login
           </Button>
