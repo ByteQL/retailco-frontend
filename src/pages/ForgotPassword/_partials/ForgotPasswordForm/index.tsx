@@ -28,7 +28,7 @@ const LoginForm = () => {
 
       <Box>
         <Center>
-          <Heading color="brand.verylightgrey" size="sm">
+          <Heading color="grey.verylightgrey" size="sm">
             Enter your email to get reset link
           </Heading>
         </Center>

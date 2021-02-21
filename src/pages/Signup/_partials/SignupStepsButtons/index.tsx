@@ -18,9 +18,9 @@ const SignupStepsButtons: React.FC<Props> = ({
 }) => {
   const isLastStep = step === stepList.length - 1;
   return (
-    <Box width="89rem" mt="6rem">
+    <Box w={{ base: 'full', lg: '85rem' }} mt="5vh">
       <SimpleGrid columns={3} alignItems="center">
-        <Box h="6rem" w="10rem">
+        <Box h="6rem" w={{ base: 'full', xl: '10rem' }}>
           {step ? (
             <Button
               variant="borderless"
@@ -33,6 +33,7 @@ const SignupStepsButtons: React.FC<Props> = ({
         </Box>
         <Button
           size="xl"
+          w={{ base: 'full' }}
           variant="solid"
           rightIcon={<AiOutlineArrowRight />}
           type="submit"

@@ -63,8 +63,8 @@ const PersonalInformation: React.FC<SignupFormProps> = ({
   return (
     <form onSubmit={handleSubmit(localSubmt)}>
       <Center>
-        <Box w={380}>
-          <VStack spacing={30}>
+        <Box w={{ sm: 'full', xl: '38rem' }}>
+          <VStack spacing={{ base: '3rem', xl: '2vh' }}>
             <FormControl id="fullname" isInvalid={errors.fullname}>
               <FormLabel htmlFor="fullname">Full Name</FormLabel>
               <BaseInput

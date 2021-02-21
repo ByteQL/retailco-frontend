@@ -20,12 +20,12 @@ const SignupStepIndicator: React.FC<Props> = ({ stepList, step }) => {
             return (
               <Circle
                 bg={isActive ? 'brand.primary' : 'white'}
-                color={isActive ? 'white' : 'brand.verylightgrey'}
+                color={isActive ? 'white' : 'grey.verylightgrey'}
                 w={'4rem'}
                 h={'4rem'}
                 fontSize="lg"
                 border=".1rem solid"
-                borderColor={isActive ? 'brand.bronze' : 'brand.verylightgrey'}
+                borderColor={isActive ? 'brand.bronze' : 'grey.verylightgrey'}
                 position="relative"
                 className={`step-circle${
                   isActive ? ' step-circle--active' : ''
@@ -34,7 +34,7 @@ const SignupStepIndicator: React.FC<Props> = ({ stepList, step }) => {
                 }`}
               >
                 <Icon
-                  color={isActive ? 'brand.primary' : 'brand.verylightgrey'}
+                  color={isActive ? 'brand.primary' : 'grey.verylightgrey'}
                 />
               </Circle>
             );
@@ -44,7 +44,8 @@ const SignupStepIndicator: React.FC<Props> = ({ stepList, step }) => {
               key={index}
               className="step-wrapper"
               mr={stepList.length - 1 > index ? '8rem' : 0}
-              width="17.2rem"
+              w={{ base: '100%', lg: '17.2rem' }}
+              d={{ base: 'none', lg: 'block' }}
             >
               <Box>
                 <Center textAlign="center">
@@ -52,7 +53,7 @@ const SignupStepIndicator: React.FC<Props> = ({ stepList, step }) => {
                 </Center>
                 <Heading
                   size="sm"
-                  color={isActive ? 'black' : 'brand.verylightgrey'}
+                  color={isActive ? 'black' : 'grey.verylightgrey'}
                   fontWeight={isActive ? 700 : 400}
                   mt="1.5rem"
                   textAlign="center"
