@@ -45,7 +45,7 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
   const [loginError, setLoginError] = useState('');
 
   useEffect(() => {
-    isAuthenticated && history.push(routePaths.dashBoard);
+    isAuthenticated && history.push(routePaths.inventory);
   }, [isAuthenticated]);
 
   const handleSubmit = (e: any) => {
