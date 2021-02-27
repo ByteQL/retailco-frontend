@@ -17,14 +17,12 @@ export const login = (credentials: {
             'userAuthDetails',
             JSON.stringify(res.data.data),
           );
-          console.log(res);
           setAuthHeader(token);
           dispatch(setLoggedInUser(res.data.data));
           resolve('success');
         }
       })
       .catch((err) => {
-        console.log(err);
         reject(err);
       });
   });

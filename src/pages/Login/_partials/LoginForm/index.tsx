@@ -21,6 +21,7 @@ import {
   Center,
   Flex,
   Stack,
+  FormErrorMessage,
 } from '@chakra-ui/react';
 
 // components
@@ -28,6 +29,7 @@ import LogoWithName from 'components/LogoWithName';
 import BaseInput from 'components/BaseInput';
 import routePaths from 'utils/routePaths';
 import { AppState } from 'redux/store';
+import CustomErrorMessage from 'components/CustomErrorMessage';
 
 // utils
 interface Props {
@@ -40,6 +42,7 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [loginError, setLoginError] = useState('');
 
   useEffect(() => {
     isAuthenticated && history.push(routePaths.dashBoard);
@@ -48,6 +51,7 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     setIsLoggingIn(true);
+    setLoginError('');
     login({ email, password })
       .then((res) => {
         if (res === 'success') {
@@ -57,9 +61,15 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
       })
       .catch((err) => {
         console.log(err);
+
+        setLoginError(
+          err.status === 404 ? 'Incorrect email/password' : err.message,
+        );
+
         setIsLoggingIn(false);
       });
   };
+  console.log(loginError);
 
   return (
     <Flex
@@ -105,15 +115,20 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
           </FormControl>
         </Stack>
         <Box w={{ base: '100%', xl: '28rem' }} mt="8vh">
-          <Button
-            type="submit"
-            variant="solid"
-            isLoading={isLoggingIn}
-            loadingText="Please wait..."
-            w="full"
-          >
-            Login
-          </Button>
+          <FormControl id="submit">
+            <Button
+              type="submit"
+              variant="solid"
+              isLoading={isLoggingIn}
+              loadingText="Please wait..."
+              w="full"
+            >
+              Login
+            </Button>
+            {loginError && (
+              <CustomErrorMessage>{loginError}</CustomErrorMessage>
+            )}
+          </FormControl>
           <Center mt="2rem" fontSize="md">
             <Link as={RouterLink} to={routePaths.forgotPassword}>
               Forgot Password?
