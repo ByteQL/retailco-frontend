@@ -6,6 +6,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+html,
+body {
+  min-height: 100vh !important;
+}
 html {
   font-size: 62.5%;
 }
@@ -29,7 +33,8 @@ body {
   line-height: 1.6rem;
   text-align: center;
 }
-.chakra-form__error-message {
+.chakra-form__error-message,
+.custom-error-message {
   position: relative;
   margin-left: 2.6rem;
   font-size: 1.3rem !important;
