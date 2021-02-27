@@ -9,10 +9,10 @@ import DashboardPageWrapperHeader from './_partials/DashboardPageWrapperHeader';
 
 const DashboardPageWrapper: React.FC = ({ children }) => {
   return (
-    <Box bg="blue.100" w="full">
-      <Flex>
+    <Box className="dashboards-wrapper" bg="blue.100" h="100vh" minH="100vh">
+      <Flex w="100vw">
         <SideMenu />
-        <Box p="5rem" w="80%" flex="1 1 0%" h="100%">
+        <Box p="5rem" flex="1 1 0%" ml={{ xl: '25.5rem' }}>
           <DashboardPageWrapperHeader />
           <Box as="main" p="5rem 0">
             {children}
