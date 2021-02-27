@@ -11,9 +11,14 @@ import Footer from 'components/Footer';
 
 const ForgotPassword: React.FC = () => {
   return (
-    <Box p="10rem">
+    <Box>
       <FrogotPasswordBanner />
-      <Center w="full">
+      <Center
+        p="10rem"
+        w={{ base: 'full' }}
+        minH="95vh"
+        justifyContent="center"
+      >
         <FrogotPasswordForm />
       </Center>
       <Footer />

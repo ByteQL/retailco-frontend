@@ -42,7 +42,7 @@ export const App = () => {
     <ChakraProvider theme={theme}>
       <CSSReset />
       <Provider store={store}>
-        <Box minW="100vw" maxW="100vw" overflow="scroll">
+        <Box w="100vw" h={{ base: undefined, xl: '100vh' }}>
           <Box>
             <Router>
               <Switch>

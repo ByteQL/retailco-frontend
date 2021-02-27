@@ -71,9 +71,10 @@ const Inventory: React.FC<Props> = ({}) => {
       image:
         'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1024px-Google_%22G%22_Logo.svg.png',
       name: 'Argentine Croacker',
-      watch: true,
+      watch: false,
       quantity: 500000,
       price: 15000,
+      isMultipleUnit: true,
       unit: 'carton',
     },
     {

@@ -15,8 +15,8 @@ interface Props {
 }
 const Login: React.FC<Props> = ({ history }) => {
   return (
-    <Flex flexDirection="column" justifyContent="space-between" minH="100vh">
-      <Flex>
+    <Flex flexDirection="column" justifyContent="space-between">
+      <Flex minH={{ base: undefined, xl: '95vh' }}>
         <LoginForm history={history} />
         <LoginBanner />
       </Flex>

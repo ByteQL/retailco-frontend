@@ -5,7 +5,12 @@ import React from 'react';
 import { Box, Link } from '@chakra-ui/layout';
 
 const Footer = () => (
-  <Box as="footer" mt="5rem" textAlign="center" fontSize="md">
+  <Box
+    as="footer"
+    h={{ base: '5rem', xl: '5vh' }}
+    textAlign="center"
+    fontSize="md"
+  >
     <Link>Terms of use</Link>. <Link>Privacy policy</Link>
   </Box>
 );
