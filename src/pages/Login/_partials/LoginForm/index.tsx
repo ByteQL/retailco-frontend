@@ -56,7 +56,7 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
       .then((res) => {
         if (res === 'success') {
           setIsLoggingIn(false);
-          history.push(routePaths.dashBoard);
+          history.push(routePaths.inventory);
         }
       })
       .catch((err) => {
