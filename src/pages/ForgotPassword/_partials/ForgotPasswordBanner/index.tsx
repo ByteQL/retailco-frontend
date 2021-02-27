@@ -5,22 +5,23 @@ import React from 'react';
 import { Box, Image } from '@chakra-ui/react';
 
 // images
-import { ReactComponent as ForgotPasswordFrontImage } from 'svg/login-front-image.svg';
 import ForgotPasswordRearImage from 'svg/login-rear-image.svg';
 
 const ForgotPasswordBanner = () => {
   return (
-    <Box>
+    <Box pos="relative" w="30%" ml="auto" d={{ base: 'none', xl: 'block' }}>
       <Box
         pos="absolute"
         right="0"
         top="0"
-        w="43.4rem"
-        h="47rem"
-        p="5rem 8rem"
+        w="35rem"
+        h="35rem"
+        p="3rem 5rem"
         bg={`url(${ForgotPasswordRearImage}) no-repeat center`}
         bgSize="cover"
         color="#fff"
+        zIndex="-1"
+        fontSize="sm"
       >
         <Box as="p">
           Ensure that you provide the email you registered with. You will

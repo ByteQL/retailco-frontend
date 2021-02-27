@@ -67,8 +67,9 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
       p={['5rem 2rem', '5rem', '5vh 10rem']}
       w={{ base: '80%', xl: '50%' }}
       alignItems={{ base: 'center', xl: 'flex-start' }}
-      m="0 auto"
+      m="auto"
       textAlign={{ base: 'center', xl: 'left' }}
+      justifyContent="center"
     >
       <LogoWithName />
       <Box>
