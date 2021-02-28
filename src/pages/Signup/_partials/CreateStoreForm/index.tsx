@@ -8,7 +8,9 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Input,
   SimpleGrid,
+  Select,
 } from '@chakra-ui/react';
 
 // UI components
@@ -97,7 +99,7 @@ const CreateStore: React.FC<SignupFormProps> = ({
           <SimpleGrid spacingX="10.6rem" spacingY="3rem" columns={2} w="full">
             <FormControl id="storename" isInvalid={errors.storename}>
               <FormLabel>Store Name</FormLabel>
-              <BaseInput
+              <Input
                 type="text"
                 placeholder="John Doe Ltd"
                 name="storename"
@@ -110,12 +112,13 @@ const CreateStore: React.FC<SignupFormProps> = ({
 
             <FormControl id="industry" isInvalid={errors.industry}>
               <FormLabel>Industry</FormLabel>
-              <BaseSelect
+              <Select
                 placeholder="Select option"
                 textTransform="capitalize"
                 onChange={(e) => setIndustry(e.target.value)}
                 ref={register}
                 value={industry}
+                size="lg"
               >
                 {industryOptions.map((item, i: number) => (
                   <option
@@ -125,7 +128,7 @@ const CreateStore: React.FC<SignupFormProps> = ({
                     {typeof item !== 'string' ? item.title : item}
                   </option>
                 ))}
-              </BaseSelect>
+              </Select>
               {errors.industry && (
                 <FormErrorMessage>{errors.industry.message}</FormErrorMessage>
               )}
@@ -133,7 +136,7 @@ const CreateStore: React.FC<SignupFormProps> = ({
 
             <FormControl id="storeaddress" isInvalid={errors.storeaddress}>
               <FormLabel>Store Address</FormLabel>
-              <BaseInput
+              <Input
                 type="text"
                 placeholder="56, Hillton Road, Doe-Island."
                 name="storeaddress"
@@ -147,7 +150,7 @@ const CreateStore: React.FC<SignupFormProps> = ({
             </FormControl>
             <FormControl id="location" isInvalid={errors.location}>
               <FormLabel>Location</FormLabel>
-              <BaseInput
+              <Input
                 type="text"
                 placeholder="Lagos, Nigeria"
                 name="location"
@@ -159,7 +162,7 @@ const CreateStore: React.FC<SignupFormProps> = ({
             </FormControl>
             <FormControl id="contactnumber" isInvalid={errors.contactnumber}>
               <FormLabel>Contact Number</FormLabel>
-              <BaseInput
+              <Input
                 type="tel"
                 placeholder="0802 000 2000"
                 name="contactnumber"

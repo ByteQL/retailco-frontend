@@ -13,8 +13,8 @@ interface Props {}
 const Signup: React.FC<Props> = ({}) => {
   const stepList = [
     { Icon: MdPermIdentity, title: 'Personal Information' },
-    { Icon: MdAccountBalance, title: 'Create store' },
     { Icon: MdInput, title: 'Login details' },
+    { Icon: MdAccountBalance, title: 'Create store' },
   ];
   const [signupStep, setSignupStep] = useState(0);
   const [allSignupFormData, setallSignupFormData] = useState({});

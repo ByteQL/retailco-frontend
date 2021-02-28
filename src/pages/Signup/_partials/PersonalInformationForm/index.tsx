@@ -9,6 +9,7 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Input,
   Stack,
   VStack,
 } from '@chakra-ui/react';
@@ -25,6 +26,9 @@ import * as yup from 'yup';
 import personanalInformationFormValidator from './_partials/personanalInformationFormValidator';
 import { SignupFormProps } from '../CurrentForm/types';
 
+// utils
+import { fullnameValidator, phonenumberValidator } from 'utils/validators';
+
 const PersonalInformation: React.FC<SignupFormProps> = ({
   handleSetStep,
   step,
@@ -38,11 +42,11 @@ const PersonalInformation: React.FC<SignupFormProps> = ({
     fullname: yup
       .string()
       .trim()
-      // .required('Your name will help us address you correctly')
+      .required('Your name will help us address you correctly')
       .matches(/[abcdefghijklmnopqrstuvwxyz]+/, 'Please enter a valid name'),
     phonenumber: yup
       .string()
-      // .required('Phone number is required')
+      .required('Phone number is required')
       .min(9, 'Please enter a valid number')
       .max(15, 'Please enter a valid number'),
   });
@@ -67,7 +71,7 @@ const PersonalInformation: React.FC<SignupFormProps> = ({
           <VStack spacing={{ base: '3rem', xl: '2vh' }}>
             <FormControl id="fullname" isInvalid={errors.fullname}>
               <FormLabel htmlFor="fullname">Full Name</FormLabel>
-              <BaseInput
+              <Input
                 type="text"
                 placeholder="John Doe"
                 name="fullname"
@@ -82,7 +86,7 @@ const PersonalInformation: React.FC<SignupFormProps> = ({
             </FormControl>
             <FormControl id="phonenumber" isInvalid={errors.phonenumber}>
               <FormLabel>Phone Number</FormLabel>
-              <BaseInput
+              <Input
                 type="tel"
                 placeholder="080 2000 0000"
                 name="phonenumber"

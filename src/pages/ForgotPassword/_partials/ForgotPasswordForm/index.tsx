@@ -13,6 +13,7 @@ import {
   Button,
   Link,
   Center,
+  Input,
 } from '@chakra-ui/react';
 
 // components
@@ -36,7 +37,7 @@ const LoginForm = () => {
       <Center mt="5vh" w="full">
         <FormControl id="email">
           <FormLabel htmlFor="email">Email Address</FormLabel>
-          <BaseInput type="email" name="email" />
+          <Input type="email" name="email" />
         </FormControl>
       </Center>
       <Box mt="5vh" textAlign="center">

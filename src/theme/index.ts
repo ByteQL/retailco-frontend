@@ -6,8 +6,10 @@ import styles from './styles';
 
 // Component style overrides
 import Button from './components/button';
+import Input from './components/input';
 import Link from './components/link';
 import Heading from './components/heading';
+import Select from './components/select';
 
 const overrides = {
   ...styles,
@@ -16,6 +18,9 @@ const overrides = {
     Button,
     Link,
     Heading,
+    Input,
+    Select,
+
     // Other components go here
   },
 };

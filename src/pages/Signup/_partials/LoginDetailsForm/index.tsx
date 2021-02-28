@@ -9,6 +9,7 @@ import {
   FormErrorMessage,
   FormLabel,
   VStack,
+  Input,
 } from '@chakra-ui/react';
 
 // UI components
@@ -43,7 +44,7 @@ const LoginDetailsForm: React.FC<SignupFormProps> = ({
           <VStack spacing={30}>
             <FormControl id="email" isInvalid={errors.email}>
               <FormLabel>Email</FormLabel>
-              <BaseInput
+              <Input
                 type="email"
                 placeholder="john_doe@myemail.com"
                 name="email"
@@ -55,7 +56,7 @@ const LoginDetailsForm: React.FC<SignupFormProps> = ({
             </FormControl>
             <FormControl id="password" isInvalid={errors.password}>
               <FormLabel>Password</FormLabel>
-              <BaseInput type="password" name="password" ref={register} />
+              <Input type="password" name="password" ref={register} />
               {errors.password && (
                 <FormErrorMessage>{errors.password.message}</FormErrorMessage>
               )}
@@ -65,11 +66,7 @@ const LoginDetailsForm: React.FC<SignupFormProps> = ({
               isInvalid={errors.confirmpassword}
             >
               <FormLabel>Confirm Password</FormLabel>
-              <BaseInput
-                type="password"
-                name="confirmpassword"
-                ref={register}
-              />
+              <Input type="password" name="confirmpassword" ref={register} />
               {errors.confirmpassword && (
                 <FormErrorMessage>
                   {errors.confirmpassword.message}

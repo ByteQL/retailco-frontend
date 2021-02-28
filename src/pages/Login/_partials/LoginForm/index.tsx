@@ -22,11 +22,11 @@ import {
   Flex,
   Stack,
   FormErrorMessage,
+  Input,
 } from '@chakra-ui/react';
 
 // components
 import LogoWithName from 'components/LogoWithName';
-import BaseInput from 'components/BaseInput';
 import routePaths from 'utils/routePaths';
 import { AppState } from 'redux/store';
 import CustomErrorMessage from 'components/CustomErrorMessage';
@@ -60,8 +60,6 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
         }
       })
       .catch((err) => {
-        console.log(err);
-
         setLoginError(
           err.status === 404 ? 'Incorrect email/password' : err.message,
         );
@@ -69,7 +67,6 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
         setIsLoggingIn(false);
       });
   };
-  console.log(loginError);
 
   return (
     <Flex
@@ -99,7 +96,7 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
         <Stack spacing="1.8rem">
           <FormControl id="email">
             <FormLabel htmlFor="email">Email Address</FormLabel>
-            <BaseInput
+            <Input
               type="email"
               name="email"
               onChange={(e) => setEmail(e.target.value)}
@@ -107,7 +104,7 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
           </FormControl>
           <FormControl id="password">
             <FormLabel htmlFor="password">Password</FormLabel>
-            <BaseInput
+            <Input
               type="password"
               name="password"
               onChange={(e) => setPassword(e.target.value)}

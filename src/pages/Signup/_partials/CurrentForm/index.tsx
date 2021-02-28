@@ -55,9 +55,9 @@ const CurrentForm: React.FC<Props> = ({
       case 0:
         return <PersonalInformation {...props} />;
       case 1:
-        return <CreateStore {...props} />;
-      case 2:
         return <LoginDetailsForm {...props} />;
+      case 2:
+        return <CreateStore {...props} />;
       default:
         return <PersonalInformation {...props} />;
     }

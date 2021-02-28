@@ -64,3 +64,6 @@ body {
   justify-content: center;
   @include markerStyles();
 }
+select {
+  height: 5rem;
+}
