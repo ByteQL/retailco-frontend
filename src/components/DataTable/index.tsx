@@ -34,12 +34,8 @@ const DataTable: React.FC<DataTableProps & BoxProps> = ({
   ...rest
 }) => {
   return (
-    <Box
-      className="data-table"
-      maxW={{ base: '100%', xl: '1200px' }}
-      overflow="scroll"
-    >
-      <Table variant="unstyled" maxw="full" {...rest}>
+    <Box className="data-table" overflow="scroll" minH="50vh">
+      <Table variant="unstyled" {...rest}>
         {title && <TableCaption>{title}</TableCaption>}
         <Thead>
           <Tr>

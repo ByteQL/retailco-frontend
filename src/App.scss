@@ -8,15 +8,17 @@
 }
 html,
 body {
-  min-height: 100vh !important;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background: #95989a;
 }
 html {
   font-size: 62.5%;
 }
 body {
-  overflow-x: hidden;
   scrollbar-color: #ccc;
   scrollbar-width: 0.5rem;
+  width: 100%;
 }
 .css-0 {
   font-size: 1.4rem;

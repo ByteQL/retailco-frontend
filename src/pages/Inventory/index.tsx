@@ -9,6 +9,8 @@ import { FaPencilAlt, FaPlus } from 'react-icons/fa';
 import formatWithCommas from 'utils/formatWithCommas';
 import { RiShieldCheckFill } from 'react-icons/ri';
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
+import CustomCard from 'components/CustomCard';
+import PageHeader from 'components/PageHeader';
 
 interface Props {}
 
@@ -100,19 +102,28 @@ const Inventory: React.FC<Props> = ({}) => {
   ];
   return (
     <Box>
-      <Flex alignItems="center">
-        <Heading size="lg">Inventory</Heading>
-        <Button variant="goldOutline" size="md" leftIcon={<FaPlus />} ml="5rem">
-          Add New Item
-        </Button>
-        <Tag bg="rgba(9, 76, 141, 0.1)" p="1.5rem 2rem" m="0 auto">
-          <Text size="sm">Total stock value:</Text>&nbsp;
-          <Heading size="sm">
-            &#x20A6;&nbsp;{formatWithCommas(999000000000)}
-          </Heading>
-        </Tag>
-      </Flex>
-      <DataTable columns={columns} dataSource={dataSource} mt="5rem" />
+      <PageHeader>
+        <Flex alignItems="center" flexDir={{ base: 'column', xl: 'row' }}>
+          <Heading size="lg">Inventory</Heading>
+          <Button
+            variant="goldOutline"
+            size="sm"
+            leftIcon={<FaPlus />}
+            ml={{ xl: '5rem' }}
+          >
+            Add New Item
+          </Button>
+          <Tag bg="rgba(9, 76, 141, 0.1)" p="1.5rem 2rem" m="0 auto">
+            <Text size="sm">Total stock value:</Text>&nbsp;
+            <Heading size="sm">
+              &#x20A6;&nbsp;{formatWithCommas(999000000000)}
+            </Heading>
+          </Tag>
+        </Flex>
+      </PageHeader>
+      <CustomCard>
+        <DataTable columns={columns} dataSource={dataSource} />
+      </CustomCard>
     </Box>
   );
 };
