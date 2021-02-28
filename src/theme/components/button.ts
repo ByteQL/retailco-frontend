@@ -43,8 +43,8 @@ const button = {
   },
   sizes: {
     sm: {
-      paddingLeft: '4rem',
-      paddingRight: '4rem',
+      paddingLeft: '3rem',
+      paddingRight: '3rem',
       height: '3.5rem',
     },
     lg: {

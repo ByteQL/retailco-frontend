@@ -23,8 +23,12 @@ const DashboardPageWrapperHeader: React.FC<Props> = ({ logoutUser }) => {
 
   return (
     <Box>
-      <Flex spacing="5rem" alignItems="flex-end" justifyContent="space-between">
-        <HStack spacing="5rem">
+      <Flex
+        alignItems="flex-end"
+        justifyContent="space-between"
+        flexDirection={{ base: 'column', xl: 'row' }}
+      >
+        <HStack spacing="2rem">
           <Box>
             <Box>{dayjs().format('DD MMMM, YYYY')}</Box>
             <BaseMenu
