@@ -42,7 +42,7 @@ export const App = () => {
     <ChakraProvider theme={theme}>
       <CSSReset />
       <Provider store={store}>
-        <Box h={{ base: undefined, xl: '100vh' }}>
+        <Box>
           <Box>
             <Router>
               <Switch>
