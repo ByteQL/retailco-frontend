@@ -11,7 +11,7 @@ import LoginRearImage from 'svg/login-rear-image.svg';
 const LoginBanner = () => {
   return (
     <Box pos="relative" w="50%" ml="auto" d={{ base: 'none', xl: 'block' }}>
-      <Box pos="absolute" right="0" top="14rem" width="55rem">
+      <Box pos="absolute" right="0" top="14rem" width="55rem" zIndex={100}>
         <LoginFrontImage />
       </Box>
       <Box
@@ -24,7 +24,6 @@ const LoginBanner = () => {
         bg={`url(${LoginRearImage}) no-repeat center`}
         bgSize="cover"
         color="#fff"
-        zIndex="-1"
         fontSize="sm"
       >
         <Box as="p">

@@ -20,7 +20,6 @@ const ForgotPasswordBanner = () => {
         bg={`url(${ForgotPasswordRearImage}) no-repeat center`}
         bgSize="cover"
         color="#fff"
-        zIndex="-1"
         fontSize="sm"
       >
         <Box as="p">
