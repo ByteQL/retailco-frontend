@@ -61,7 +61,11 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
       })
       .catch((err) => {
         setLoginError(
-          err.status === 404 ? 'Incorrect email/password' : err.message,
+          err
+            ? err.status === 404
+              ? 'Incorrect email/password'
+              : err.message
+            : 'Something went wrong there. Please try again',
         );
 
         setIsLoggingIn(false);
