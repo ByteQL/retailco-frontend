@@ -21,7 +21,7 @@ const DashboardPageWrapper: React.FC<Props> = ({
   children,
 }) => {
   useEffect(() => {
-    if (!isAuthenticated) history.push('/');
+    // if (!isAuthenticated) history.push('/');
   }, []);
   return (
     <Box className="dashboards-wrapper" bg="blue.100" h="100vh">

@@ -15,7 +15,6 @@ import {
 } from '@chakra-ui/react';
 
 // Ui components
-import BaseInput from 'components/BaseInput';
 
 // types
 import SignupStepsButtons from '../SignupStepsButtons';
@@ -23,11 +22,10 @@ import SignupStepsButtons from '../SignupStepsButtons';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import personanalInformationFormValidator from './_partials/personanalInformationFormValidator';
+
 import { SignupFormProps } from '../CurrentForm/types';
 
 // utils
-import { fullnameValidator, phonenumberValidator } from 'utils/validators';
 
 const PersonalInformation: React.FC<SignupFormProps> = ({
   handleSetStep,

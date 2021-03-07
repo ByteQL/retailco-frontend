@@ -14,8 +14,6 @@ import {
 } from '@chakra-ui/react';
 
 // UI components
-import BaseInput from '../../../../components/BaseInput';
-import BaseSelect from '../../../../components/BaseSelect';
 
 // third party libraries
 import * as yup from 'yup';

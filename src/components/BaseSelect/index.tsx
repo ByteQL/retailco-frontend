@@ -1,25 +1,15 @@
-import React, { Component, Ref, RefObject } from 'react';
-import { Select, SelectProps } from '@chakra-ui/react';
+import React from 'react';
+import BaseMenu, { BaseMenuProps } from 'components/BaseMenu';
+import { FaChevronDown } from 'react-icons/fa';
 
-interface Props {
-  ref?: any;
-}
-
-class BaseSelectInner extends Component<Props & SelectProps, any> {
-  render() {
-    return (
-      <Select {...this.props} ref={this.props.ref}>
-        {this.props.children}
-      </Select>
-    );
-  }
-}
-
-const BaseSelect = React.forwardRef((props: Props & SelectProps, ref) => (
-  <BaseSelectInner ref={ref} {...props} />
-));
-BaseSelect.defaultProps = {
-  height: '5rem',
-};
+const BaseSelect: React.FC<BaseMenuProps> = ({ ...rest }) => (
+  <BaseMenu
+    {...rest}
+    menuButtonProps={{
+      variant: 'menuButton',
+      rightIcon: <FaChevronDown color="#D1DAE0" />,
+    }}
+  />
+);
 
 export default BaseSelect;
