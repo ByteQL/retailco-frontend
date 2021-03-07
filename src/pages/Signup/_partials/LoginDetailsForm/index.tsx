@@ -13,35 +13,54 @@ import {
 } from '@chakra-ui/react';
 
 // UI components
-import BaseInput from 'components/BaseInput';
-
-import * as yup from 'yup';
-import loginDetailsFormValidator from './_partials/loginDetailsFormValidator';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
 import SignupStepsButtons from '../SignupStepsButtons';
 import { SignupFormProps } from '../CurrentForm/types';
 
-const LoginDetailsForm: React.FC<SignupFormProps> = ({
+// utils
+import loginDetailsFormValidator from './_partials/loginDetailsFormValidator';
+
+// third party libraries
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import { connect } from 'react-redux';
+
+// redux
+import { signUp } from 'redux/actions/auth';
+
+interface Props {
+  signUp: (userData: any) => Promise<any>;
+}
+const LoginDetailsForm: React.FC<Props & SignupFormProps> = ({
   handleSetStep,
   step,
   stepList,
-  handleSubmitClick,
   allSignupFormData,
+  signUp,
 }) => {
-  const schema = yup.object().shape(loginDetailsFormValidator);
-  const { register, handleSubmit, errors, setValue } = useForm({
-    resolver: yupResolver(schema),
-  });
   useEffect(() => {
     const { email } = allSignupFormData;
     email && setValue('email', email);
   }, []);
+
+  const schema = yup.object().shape(loginDetailsFormValidator);
+  const { register, handleSubmit, errors, setValue } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const localSubmt = (values: any) => {
+    const userData = { ...allSignupFormData, ...values };
+    delete userData.gender;
+    delete userData.confirmpassword;
+    signUp(userData)
+      .then((res) => handleSetStep(step + 1))
+      .catch((err) => console.log(err));
+  };
   return (
-    <form onSubmit={handleSubmit(handleSubmitClick)}>
+    <form onSubmit={handleSubmit(localSubmt)}>
       <Center>
-        <Box w="38rem">
-          <VStack spacing={30}>
+        <Box w={{ sm: 'full', xl: '38rem' }}>
+          <VStack spacing={{ base: '3rem', xl: '2vh' }}>
             <FormControl id="email" isInvalid={errors.email}>
               <FormLabel>Email</FormLabel>
               <Input
@@ -85,4 +104,4 @@ const LoginDetailsForm: React.FC<SignupFormProps> = ({
   );
 };
 
-export default LoginDetailsForm;
+export default connect(null, { signUp })(LoginDetailsForm);
