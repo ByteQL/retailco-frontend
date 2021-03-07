@@ -1,20 +1,26 @@
+// react
 import React from 'react';
-import { Box, Button, SimpleGrid } from '@chakra-ui/react';
 
+// third party components
+import { Box, Button, SimpleGrid } from '@chakra-ui/react';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 
-// types
+// third party libraries
+import { connect } from 'react-redux';
+import { AppState } from 'redux/store';
 
 interface Props {
   step: number;
   handleSetStep: (step: number) => void;
   stepList: any[];
+  isSigningUp: boolean;
 }
 
 const SignupStepsButtons: React.FC<Props> = ({
   step,
   handleSetStep,
   stepList,
+  isSigningUp,
 }) => {
   const isLastStep = step === stepList.length - 1;
   return (
@@ -37,6 +43,7 @@ const SignupStepsButtons: React.FC<Props> = ({
           variant="solid"
           rightIcon={<AiOutlineArrowRight />}
           type="submit"
+          isLoading={isSigningUp}
         >
           {isLastStep ? 'Create Account' : 'Proceed'}
         </Button>
@@ -45,5 +52,7 @@ const SignupStepsButtons: React.FC<Props> = ({
     </Box>
   );
 };
-
-export default SignupStepsButtons;
+const mapStateProps = (state: AppState) => ({
+  isSigningUp: state.auth.isSigningUp,
+});
+export default connect(mapStateProps)(SignupStepsButtons);

@@ -7,7 +7,7 @@ export default {
   colors: {
     brand: {
       primary: '#094C8D',
-      orange: { primary: '#FF7700' },
+      orange: '#FF7700',
       bronze: '#DDA780',
     },
     black: '#011624',

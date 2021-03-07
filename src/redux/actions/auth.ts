@@ -1,12 +1,33 @@
 import api from 'api';
 import { Dispatch } from 'redux';
-import { LOGOUT, SET_LOGGED_IN_USER } from 'redux/types/constants/auth';
+import {
+  IS_SIGNING_UP,
+  LOGOUT,
+  SET_LOGGED_IN_USER,
+} from 'redux/types/constants/auth';
 import setAuthHeader from 'utils/setAuthHeader';
 
-export const login = (credentials: {
-  email: string;
-  password: string;
-}) => async (dispatch: Dispatch): Promise<any> => {
+export const signUp = (userData: any) => async (
+  dispatch: Dispatch,
+): Promise<any> => {
+  dispatch({ type: IS_SIGNING_UP, payload: true });
+  return new Promise((resolve, reject) => {
+    api.auth
+      .signUp(userData)
+      .then((res) => {
+        dispatch({ type: IS_SIGNING_UP, payload: false });
+        resolve(res);
+      })
+      .catch((err) => {
+        dispatch({ type: IS_SIGNING_UP, payload: false });
+        reject(err);
+      });
+  });
+};
+
+export const login = (credentials: any) => async (
+  dispatch: Dispatch,
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     api.auth
       .login(credentials)

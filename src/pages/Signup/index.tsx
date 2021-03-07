@@ -8,9 +8,7 @@ import SignupStepIndicator from 'components/SignupStepsIndicator';
 import CurrentForm from './_partials/CurrentForm';
 import { MdAccountBalance, MdPermIdentity, MdInput } from 'react-icons/md';
 
-interface Props {}
-
-const Signup: React.FC<Props> = ({}) => {
+const Signup: React.FC = () => {
   const stepList = [
     { Icon: MdPermIdentity, title: 'Personal Information' },
     { Icon: MdInput, title: 'Login details' },

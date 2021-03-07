@@ -14,14 +14,11 @@ import {
   Box,
   Heading,
   FormControl,
-  VStack,
   FormLabel,
   Button,
   Link,
-  Center,
   Flex,
   Stack,
-  FormErrorMessage,
   Input,
 } from '@chakra-ui/react';
 
@@ -61,7 +58,11 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
       })
       .catch((err) => {
         setLoginError(
-          err.status === 404 ? 'Incorrect email/password' : err.message,
+          err
+            ? err.status === 404
+              ? 'Incorrect email/password'
+              : err.message
+            : 'Something went wrong there. Please try again',
         );
 
         setIsLoggingIn(false);
@@ -126,15 +127,18 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
               <CustomErrorMessage>{loginError}</CustomErrorMessage>
             )}
           </FormControl>
-          <Center mt="2rem" fontSize="md">
+          <Box mt="2rem" fontSize="md" textAlign="center">
             <Link as={RouterLink} to={routePaths.forgotPassword}>
               Forgot Password?
             </Link>
-          </Center>
-          <Box mt="8vh">
-            <Box as="p">
+            <Box mt="8vh" as="p">
               New to RetailCo?{' '}
-              <Link as={RouterLink} to={routePaths.signUp} color="#FF7700">
+              <Link
+                as={RouterLink}
+                to={routePaths.signUp}
+                color="brand.orange"
+                fontWeight={700}
+              >
                 Sign up
               </Link>
             </Box>

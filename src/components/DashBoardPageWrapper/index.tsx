@@ -1,13 +1,28 @@
 // react
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // third party components
 import { Box, Flex } from '@chakra-ui/react';
 import SideMenu from 'components/SideMenu';
 
 import DashboardPageWrapperHeader from './_partials/DashboardPageWrapperHeader';
+import { connect } from 'react-redux';
+import { AppState } from 'redux/store';
+import { History } from 'history';
 
-const DashboardPageWrapper: React.FC = ({ children }) => {
+interface Props {
+  isAuthenticated: any;
+  history: History;
+}
+
+const DashboardPageWrapper: React.FC<Props> = ({
+  isAuthenticated,
+  history,
+  children,
+}) => {
+  useEffect(() => {
+    if (!isAuthenticated) history.push('/');
+  }, []);
   return (
     <Box className="dashboards-wrapper" bg="blue.100" h="100vh">
       <Flex>
@@ -28,4 +43,8 @@ const DashboardPageWrapper: React.FC = ({ children }) => {
   );
 };
 
-export default DashboardPageWrapper;
+const mapStateToProps = (state: AppState) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps)(DashboardPageWrapper);
