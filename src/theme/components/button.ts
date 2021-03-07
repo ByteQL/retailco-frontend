@@ -1,3 +1,10 @@
+const menuButtonStyle = {
+  bg: 'transparent',
+  boxShadow: '0px 2px 3px #0000000D',
+  border: '1px solid #D1DAE0',
+  borderRadius: '4px',
+};
+
 const button = {
   baseStyle: {
     textTransform: 'capitalize',
@@ -38,6 +45,12 @@ const button = {
       _hover: {
         backgroundColor: 'black',
         color: '#fff',
+      },
+    },
+    menuButton: {
+      ...menuButtonStyle,
+      _hover: {
+        ...menuButtonStyle,
       },
     },
   },

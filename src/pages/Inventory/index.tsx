@@ -12,9 +12,7 @@ import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
 import CustomCard from 'components/CustomCard';
 import PageHeader from 'components/PageHeader';
 
-interface Props {}
-
-const Inventory: React.FC<Props> = ({}) => {
+const Inventory: React.FC = () => {
   const columns: Column[] = [
     {
       title: '',

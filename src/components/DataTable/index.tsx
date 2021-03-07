@@ -12,7 +12,10 @@ import {
   TableCaption,
   BoxProps,
   Box,
+  Flex,
+  HStack,
 } from '@chakra-ui/react';
+import BaseSelect from 'components/BaseSelect';
 
 export type Column = {
   title: string;
@@ -35,6 +38,22 @@ const DataTable: React.FC<DataTableProps & BoxProps> = ({
 }) => {
   return (
     <Box className="data-table" overflow="scroll" minH="50vh">
+      <HStack spacing="1rem">
+        <BaseSelect
+          placeholder="sort by"
+          options={[
+            { label: 'Date', value: '0' },
+            { label: 'Name', value: '1' },
+          ]}
+        />
+        <BaseSelect
+          placeholder="filter by"
+          options={[
+            { label: 'Date', value: '0' },
+            { label: 'Name', value: '1' },
+          ]}
+        />
+      </HStack>
       <Table variant="unstyled" {...rest}>
         {title && <TableCaption>{title}</TableCaption>}
         <Thead>
@@ -43,7 +62,6 @@ const DataTable: React.FC<DataTableProps & BoxProps> = ({
               <Th
                 key={i}
                 w={width}
-                // maxW={width || 150}
                 textTransform="unset"
                 fontWeight="600"
                 letterSpacing="unset"

@@ -19,6 +19,7 @@ export default {
     },
     grey: {
       '100': '#95989A',
+      '200': '#D1DAE0',
       verylightgrey: '#E0E0E0',
     },
   },

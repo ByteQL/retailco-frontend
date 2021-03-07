@@ -14,6 +14,7 @@ import { Box, Button, Flex, HStack, Link } from '@chakra-ui/react';
 import IconWrapper from '../IconWarapper';
 import { MdPersonOutline } from 'react-icons/md';
 import BaseMenu from 'components/BaseMenu';
+import { FaChevronDown, FaStore } from 'react-icons/fa';
 
 interface Props {
   logoutUser: () => any;
@@ -39,6 +40,27 @@ const DashboardPageWrapperHeader: React.FC<Props> = ({ logoutUser }) => {
                 { label: 'Ibafo Store', value: '0' },
                 { label: 'Lekki Store', value: '1' },
               ]}
+              menuButtonProps={{
+                variant: 'unstyled',
+                leftIcon: (
+                  <FaStore
+                    style={{
+                      color: 'black',
+                      width: '1.8rem',
+                      marginRight: '1rem',
+                    }}
+                  />
+                ),
+                rightIcon: (
+                  <FaChevronDown
+                    style={{
+                      margin: '0 1rem',
+                      width: '1.4rem',
+                      color: 'black',
+                    }}
+                  />
+                ),
+              }}
             />
           </Box>
 

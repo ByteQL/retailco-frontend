@@ -18,7 +18,6 @@ import {
 
 // components
 import LogoWithName from 'components/LogoWithName';
-import BaseInput from 'components/BaseInput';
 import routePaths from 'utils/routePaths';
 const LoginForm = () => {
   return (

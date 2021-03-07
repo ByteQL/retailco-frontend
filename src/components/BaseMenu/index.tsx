@@ -12,20 +12,21 @@ import {
   Box,
   Text,
   MenuButtonProps,
+  ButtonProps,
 } from '@chakra-ui/react';
-import { FaChevronDown, FaStore } from 'react-icons/fa';
+import { FaChevronDown } from 'react-icons/fa';
 
-interface Props {
+export interface BaseMenuProps {
   options: Array<{ label: string; value: string | number }>;
   defualtValue?: string | number;
   value?: string | number;
-  onChange?: (value) => any;
+  onChange?: (value: any) => any;
   menuProps?: MenuProps;
-  menuButtonProps?: MenuButtonProps;
+  menuButtonProps?: MenuButtonProps & ButtonProps;
   placeholder?: string;
 }
 
-const BaseMenu: React.FC<Props> = ({
+const BaseMenu: React.FC<BaseMenuProps> = ({
   options,
   defualtValue,
   value,
@@ -49,36 +50,29 @@ const BaseMenu: React.FC<Props> = ({
   }, [value]);
 
   return (
-    <Menu variant="unstyled" autoSelect={false} {...menuProps}>
+    <Menu autoSelect={false} {...menuProps}>
       <MenuButton
         as={Button}
-        size="md"
-        leftIcon={
-          <FaStore
-            style={{ color: '#011624', width: '1.8rem', marginRight: '1rem' }}
-          />
-        }
+        size="sm"
         rightIcon={
           <FaChevronDown
-            style={{ margin: '0 1rem', width: '1.4rem', color: '#011624' }}
+            style={{ margin: '0 1rem', width: '1.4rem', color: 'black' }}
           />
         }
-        variant="unstyled"
         d="flex"
-        outline="none"
         _focus={{
           boxShadow: 'none',
         }}
         pos="relative"
         {...menuButtonProps}
       >
-        <Box minW="10rem">
+        <Box>
           {selectedObj ? (
-            <Text color="brand.primary" fontWeight="bold" d="contents">
+            <Text color="brand.primary" fontWeight="bold">
               {selectedObj.label}
             </Text>
           ) : (
-            <Text>{placeholder}</Text>
+            <Text color="grey.100">{placeholder}</Text>
           )}
         </Box>
       </MenuButton>
