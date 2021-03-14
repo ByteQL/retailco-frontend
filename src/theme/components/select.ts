@@ -1,30 +1,42 @@
 const Select = {
   baseStyle: {
-    field: {
-      fontSize: '1.8rem',
+    lg: {
+      field: {
+        '&.css-1uvy09z': {
+          heaight: '5rem',
+        },
+      },
     },
   },
   sizes: {
-    sm: {
-      field: {
-        height: '3.5rem',
-      },
-    },
-    lg: {
-      field: {
-        height: '5rem !important',
-        fontSize: 'md',
-      },
-    },
-    xl: {
-      field: {
-        height: '6rem',
-      },
-    },
+    // sm: {
+    //   field: {
+    //     height: '3.5rem',
+    //   },
+    // },
+    // md: {
+    //   field: {
+    //     height: '4rem !important',
+    //   },
+    // },
+    // lg: {
+    //   field: {
+    //     '&.css-1uvy09z': {
+    //       height: '5rem',
+    //     },
+    //     height: '5rem !important',
+    //     fontSize: 'md',
+    //   },
+    // },
+    // xl: {
+    //   field: {
+    //     height: '6rem',
+    //   },
+    // },
   },
-  defaultProps: {
-    size: 'lg',
-  },
+  // defaultProps: {
+  //   size: 'lg',
+  // },
 };
 
 export default Select;

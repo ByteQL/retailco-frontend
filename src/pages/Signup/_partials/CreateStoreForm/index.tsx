@@ -116,7 +116,7 @@ const CreateStore: React.FC<SignupFormProps> = ({
                 onChange={(e) => setIndustry(e.target.value)}
                 ref={register}
                 value={industry}
-                size="lg"
+                h="5rem"
               >
                 {industryOptions.map((item, i: number) => (
                   <option

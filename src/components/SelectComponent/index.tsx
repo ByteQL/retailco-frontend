@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseMenu, { BaseMenuProps } from 'components/BaseMenu';
+import BaseMenu, { BaseMenuProps } from 'components/MenuComponent';
 import { FaChevronDown } from 'react-icons/fa';
 
 const BaseSelect: React.FC<BaseMenuProps> = ({ ...rest }) => (

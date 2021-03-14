@@ -10,6 +10,8 @@ import Input from './components/input';
 import Link from './components/link';
 import Heading from './components/heading';
 import Select from './components/select';
+import Modal from './components/modal';
+import Tabs from './components/tabs';
 
 const overrides = {
   ...styles,
@@ -20,6 +22,8 @@ const overrides = {
     Heading,
     Input,
     Select,
+    Modal,
+    Tabs,
 
     // Other components go here
   },

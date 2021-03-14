@@ -52,9 +52,10 @@ const LoginDetailsForm: React.FC<Props & SignupFormProps> = ({
     const userData = { ...allSignupFormData, ...values };
     delete userData.gender;
     delete userData.confirmpassword;
-    signUp(userData)
-      .then((res) => handleSetStep(step + 1))
-      .catch((err) => console.log(err));
+    handleSetStep(step + 1);
+    // signUp(userData)
+    //   .then((res) => handleSetStep(step + 1))
+    //   .catch((err) => console.log(err));
   };
   return (
     <form onSubmit={handleSubmit(localSubmt)}>
