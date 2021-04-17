@@ -24,6 +24,7 @@ const AddItemModal: React.FC<ModalContentProps & UseModalProps> = ({
 }) => {
   const [selectedTab, setSelectedTab] = useState(0);
   const [enteredItems, setEnteredItems] = useState<Array<any>>([]);
+
   const ModalHeader = () => (
     <Box>
       <Flex>
@@ -33,10 +34,10 @@ const AddItemModal: React.FC<ModalContentProps & UseModalProps> = ({
         />
         Add Item
       </Flex>
-      <Tabs>
+      <Tabs onChange={setSelectedTab} index={selectedTab}>
         <TabList borderBottom="none">
-          <Tab onClick={(_) => setSelectedTab(0)}>Add manually</Tab>
-          <Tab onClick={(_) => setSelectedTab(1)}>Templates</Tab>
+          <Tab>Add manually</Tab>
+          <Tab>Templates</Tab>
         </TabList>
       </Tabs>
     </Box>
