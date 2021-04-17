@@ -2,17 +2,28 @@
 import React from 'react';
 
 // third party components
-import { Box, Button, Flex, Heading, Tag, Text } from '@chakra-ui/react';
-import DataTable, { Column } from 'components/DataTable';
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Tag,
+  Text,
+  useDisclosure,
+} from '@chakra-ui/react';
+import DataTable, { Column } from 'components/TableComponent';
 import Marker from 'components/Marker';
 import { FaPencilAlt, FaPlus } from 'react-icons/fa';
 import formatWithCommas from 'utils/formatWithCommas';
 import { RiShieldCheckFill } from 'react-icons/ri';
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
-import CustomCard from 'components/CustomCard';
+import CustomCard from 'components/CardComponent';
 import PageHeader from 'components/PageHeader';
+import AddItemModal from './_partials/AddItemModal';
 
 const Inventory: React.FC = () => {
+  const disclosureObject = useDisclosure();
+  const { isOpen, onOpen, onClose } = disclosureObject;
   const columns: Column[] = [
     {
       title: '',
@@ -98,6 +109,7 @@ const Inventory: React.FC = () => {
       price: 15000,
     },
   ];
+
   return (
     <Box>
       <PageHeader>
@@ -108,6 +120,7 @@ const Inventory: React.FC = () => {
             size="sm"
             leftIcon={<FaPlus />}
             ml={{ xl: '5rem' }}
+            onClick={onOpen}
           >
             Add New Item
           </Button>
@@ -122,6 +135,7 @@ const Inventory: React.FC = () => {
       <CustomCard>
         <DataTable columns={columns} dataSource={dataSource} />
       </CustomCard>
+      <AddItemModal {...disclosureObject} />
     </Box>
   );
 };

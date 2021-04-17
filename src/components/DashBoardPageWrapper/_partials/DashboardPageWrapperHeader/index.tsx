@@ -13,7 +13,7 @@ import { logoutUser } from 'redux/actions/auth';
 import { Box, Button, Flex, HStack, Link } from '@chakra-ui/react';
 import IconWrapper from '../IconWarapper';
 import { MdPersonOutline } from 'react-icons/md';
-import BaseMenu from 'components/BaseMenu';
+import BaseMenu from 'components/MenuComponent';
 import { FaChevronDown, FaStore } from 'react-icons/fa';
 
 interface Props {

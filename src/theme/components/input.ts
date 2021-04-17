@@ -6,6 +6,11 @@ const Input = {
         height: '3.5rem',
       },
     },
+    md: {
+      field: {
+        height: '4rem',
+      },
+    },
     lg: {
       field: {
         height: '5rem',

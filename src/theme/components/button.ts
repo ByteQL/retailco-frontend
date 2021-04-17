@@ -60,6 +60,11 @@ const button = {
       paddingRight: '3rem',
       height: '3.5rem',
     },
+    md: {
+      paddingLeft: '3rem',
+      paddingRight: '3rem',
+      height: '4rem',
+    },
     lg: {
       padding: '1.7rem 5rem !important',
       height: '5rem',

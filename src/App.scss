@@ -63,6 +63,14 @@ body {
   justify-content: center;
   @include markerStyles();
 }
-select {
-  height: 5rem;
+.chakra-checkbox__control{
+  width: 2rem !important;
+  height: 2rem !important;
+  >div{
+    width: 100%;
+    >svg{
+      width: 80%;
+    }
+  }
 }
+

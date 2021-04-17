@@ -15,7 +15,7 @@ import {
   Flex,
   HStack,
 } from '@chakra-ui/react';
-import BaseSelect from 'components/BaseSelect';
+import BaseSelect from 'components/SelectComponent';
 
 export type Column = {
   title: string;

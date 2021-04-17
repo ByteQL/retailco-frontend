@@ -1,4 +1,4 @@
-export default {
+const style = {
   global: {
     //  styles for regular elements
     color: 'black',
@@ -38,8 +38,13 @@ export default {
     '8xl': '7.5rem',
     '9xl': '8rem',
   },
+  sizes: {
+    lg: '5rem',
+  },
 
   defaultProps: {
     fontSizes: 'md',
   },
 };
+
+export default style;
