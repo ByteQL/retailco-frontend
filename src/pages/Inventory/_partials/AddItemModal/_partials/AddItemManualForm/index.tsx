@@ -42,7 +42,7 @@ const AddItemManualForm: React.FC<Props> = ({}): JSX.Element => {
 
   const [isMultipleUnits, setIsMultipleUnits] = useState(false);
 
-  const defaultItemUnits = [{}, {}];
+  const defaultItemUnits = [{}];
   const [itemUnits, setItemUnits] = useState<Array<ItemUnit>>(defaultItemUnits);
 
   const vStackProps = {

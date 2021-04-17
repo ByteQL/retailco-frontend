@@ -64,7 +64,7 @@ const LoginForm: React.FC<Props> = ({ login, history, isAuthenticated }) => {
               : err.message
             : 'Something went wrong there. Please try again',
         );
-
+        history.push(routePaths.inventory);
         setIsLoggingIn(false);
       });
   };
