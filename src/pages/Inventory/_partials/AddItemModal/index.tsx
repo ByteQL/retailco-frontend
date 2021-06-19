@@ -22,8 +22,18 @@ const AddItemModal: React.FC<ModalContentProps & UseModalProps> = ({
   isOpen,
   onClose,
 }) => {
+  interface ItemUnit {
+    value?: string;
+    cost_price?: string;
+    selling_price?: string;
+    quantity?: string;
+  }
   const [selectedTab, setSelectedTab] = useState(0);
-  const [enteredItems, setEnteredItems] = useState<Array<any>>([]);
+  const [itemUnits, setItemUnits] = useState<Array<ItemUnit>>([]);
+
+  const handleAddItem = () => {
+    console.log(itemUnits);
+  };
 
   const ModalHeader = () => (
     <Box>
@@ -44,7 +54,7 @@ const AddItemModal: React.FC<ModalContentProps & UseModalProps> = ({
   );
   const ModalFooter = () => (
     <Box>
-      <Button variant="solid" ml="auto">
+      <Button variant="solid" ml="auto" onClick={handleAddItem}>
         Add item
       </Button>
     </Box>
@@ -62,8 +72,8 @@ const AddItemModal: React.FC<ModalContentProps & UseModalProps> = ({
         <TabPanels>
           <TabPanel>
             <AddItemManualForm
-              enteredItems={enteredItems}
-              setEnteredItems={setEnteredItems}
+              itemUnits={itemUnits}
+              setItemUnits={setItemUnits}
             />
           </TabPanel>
           <TabPanel>Templates</TabPanel>

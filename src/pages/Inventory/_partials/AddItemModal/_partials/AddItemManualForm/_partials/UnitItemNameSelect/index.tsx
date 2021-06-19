@@ -13,21 +13,22 @@ const UnitItemNameSelect = ({
   item,
   i,
   handleChangeItemUnit,
-  handleDeleteItemUnit,
   unitOptions,
+  isMultipleUnitsChecked,
 }) => {
   return (
-    <FormControl key={`unit-name-${i}`}>
-      <Heading as="h3" size="sm">
-        Unit {i + 1}
-      </Heading>
+    <FormControl key={`unit-name-${i}`} w={{ xl: '30rem' }}>
+      {isMultipleUnitsChecked && (
+        <Heading as="h3" size="sm">
+          Unit {i + 1}
+        </Heading>
+      )}
       <FormLabel mt="3rem">Item Unit</FormLabel>
       <Flex>
         <Select
           value={item.value}
           placeholder="e.g Peice"
           onChange={(e) => handleChangeItemUnit(i, 'value', e.target.value)}
-          w="70%"
           h="4rem"
         >
           {unitOptions.map((unitOption) => (
@@ -36,15 +37,6 @@ const UnitItemNameSelect = ({
             </option>
           ))}
         </Select>
-        <IconButton
-          size="sm"
-          variant="unstyled"
-          aria-label="Delete unit"
-          icon={<RiDeleteBinLine size="2.5rem" />}
-          color="grey"
-          ml="auto"
-          onClick={(_) => handleDeleteItemUnit(i)}
-        />
       </Flex>
     </FormControl>
   );
