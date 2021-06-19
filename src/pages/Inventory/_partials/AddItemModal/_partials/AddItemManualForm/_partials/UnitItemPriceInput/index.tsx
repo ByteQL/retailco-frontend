@@ -32,6 +32,7 @@ const UnitItemPriceInput = ({
           <FormLabel>Product Quantity</FormLabel>
           <Input
             size="md"
+            defaultValue=""
             placeholder="0.00"
             value={item.quantity}
             onChange={(e) =>

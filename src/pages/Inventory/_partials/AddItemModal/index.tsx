@@ -37,7 +37,7 @@ const AddItemModal: React.FC<ModalContentProps & UseModalProps> = ({
 
   const ModalHeader = () => (
     <Box>
-      <Flex>
+      <Flex fontSize="1.8rem">
         <FaArrowLeft
           size="1.4rem"
           style={{ height: '2.1rem', marginRight: '1rem' }}
