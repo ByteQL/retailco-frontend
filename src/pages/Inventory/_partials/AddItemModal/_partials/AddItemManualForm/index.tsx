@@ -1,5 +1,5 @@
 // react
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 // third party components
 import {
@@ -10,45 +10,46 @@ import {
   FormErrorMessage,
   FormHelperText,
   FormLabel,
-  SimpleGrid,
   Input,
   Select,
   Textarea,
   VStack,
+  IconButton,
   Button,
-} from "@chakra-ui/react";
-import { RiShieldCheckFill } from "react-icons/ri";
+  Stack,
+} from '@chakra-ui/react';
+import { RiShieldCheckFill, RiDeleteBin2Line } from 'react-icons/ri';
 
 // third party libraries
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 
 // UI components
-import UnitItemNameSelect from "./_partials/UnitItemNameSelect";
-import UnitItemPriceInput from "./_partials/UnitItemPriceInput";
+import UnitItemNameSelect from './_partials/UnitItemNameSelect';
+import UnitItemPriceInput from './_partials/UnitItemPriceInput';
+import { useEffect } from 'react';
 
 interface Props {
-  enteredItems: any[];
-  setEnteredItems: (items: any[]) => void;
+  itemUnits: any[];
+  setItemUnits: (unit: any) => void;
 }
 
-const AddItemManualForm: React.FC<Props> = ({}): JSX.Element => {
+const AddItemManualForm: React.FC<Props> = ({
+  itemUnits,
+  setItemUnits,
+}): JSX.Element => {
   const { register, errors } = useForm();
 
-  interface ItemUnit {
-    value?: string;
-    costPrice?: string;
-    sellingPrice?: string;
-    quantity?: string;
-  }
-
-  const [isMultipleUnits, setIsMultipleUnits] = useState(false);
+  const [isMultipleUnitsChecked, setIsMultipleUnitsChecked] = useState(false);
 
   const defaultItemUnits = [{}];
-  const [itemUnits, setItemUnits] = useState<Array<ItemUnit>>(defaultItemUnits);
+
+  useEffect(() => {
+    setItemUnits(defaultItemUnits);
+  }, []);
 
   const vStackProps = {
-    spacing: "3rem",
-    w: "100%",
+    spacing: '3rem',
+    w: 'full',
   };
   const handleChangeItemUnit = (index: number, prop: any, value: string) => {
     // create a copy of itemUnits
@@ -72,17 +73,24 @@ const AddItemManualForm: React.FC<Props> = ({}): JSX.Element => {
     setItemUnits([...itemUnits, {}]);
   };
 
-  const handleIsMultipleUnitsChange = (e: any) => {
-    setIsMultipleUnits(e.target.checked);
+  const handleIsMultipleUnitsCheckedChange = (e: any) => {
+    const { checked } = e.target;
+
+    setIsMultipleUnitsChecked(checked);
+    if (!checked) {
+      setItemUnits(defaultItemUnits);
+    }
   };
-  const unitOptions = ["peice", "carton"];
+  const unitOptions = ['peice', 'carton'];
+
+  console.log(itemUnits);
 
   return (
-    <Box as="form" p={{ xl: "5rem 8rem" }} id="add-item-form--manual">
+    <Box as="form" p={{ xl: '5rem 8rem' }} id="add-item-form--manual">
       <Flex>
         <VStack {...vStackProps} alignItems="left">
           <FormControl
-            w={{ xl: "80%" }}
+            w={{ xl: '80%' }}
             id="itemname"
             isInvalid={errors.itemname}
           >
@@ -100,7 +108,7 @@ const AddItemManualForm: React.FC<Props> = ({}): JSX.Element => {
             )}
           </FormControl>
           <FormControl
-            w={{ xl: "80%" }}
+            w={{ xl: '80%' }}
             id="itemcategory"
             isInvalid={errors.itemcategory}
           >
@@ -115,7 +123,7 @@ const AddItemManualForm: React.FC<Props> = ({}): JSX.Element => {
             )}
           </FormControl>
           <FormControl
-            w={{ xl: "80%" }}
+            w={{ xl: '80%' }}
             id="itemcategory"
             isInvalid={errors.itemcategory}
           >
@@ -140,61 +148,18 @@ const AddItemManualForm: React.FC<Props> = ({}): JSX.Element => {
       </Flex>
 
       <VStack spacing="3rem" mt="3rem" w="full">
-        <FormControl id="isMultipleUnits">
-          <Checkbox onChange={handleIsMultipleUnitsChange}>
-            <Box ml={{ xl: "1rem" }}>This item has multiple units</Box>
+        <FormControl id="isMultipleUnitsChecked">
+          <Checkbox onChange={handleIsMultipleUnitsCheckedChange}>
+            <Box ml={{ xl: '1rem' }}>This item has multiple units</Box>
           </Checkbox>
           <FormHelperText fontSize="1.2rem">
             Select this option if this item is sold in multiple units like KG,
             Carton, Dozen
           </FormHelperText>
         </FormControl>
-        <Box w="full">
-          {isMultipleUnits ? (
-            <Flex
-              w="full"
-              border="0.1rem solid"
-              borderColor="grey.200"
-              borderRadius=".5rem"
-              p="1.6rem 3rem"
-            >
-              <VStack
-                {...vStackProps}
-                spacing="3.1rem"
-                alignItems="flex-start"
-                w={{ base: "full", xl: "35%" }}
-              >
-                {itemUnits.map((item, i) => (
-                  <UnitItemNameSelect
-                    key={i}
-                    item={item}
-                    i={i}
-                    handleChangeItemUnit={handleChangeItemUnit}
-                    unitOptions={unitOptions}
-                  />
-                ))}
-                <Button
-                  variant="goldOutline"
-                  size="sm"
-                  borderRadius="1rem"
-                  onClick={handleAddItemUnitSlot}
-                >
-                  Add another unit
-                </Button>
-              </VStack>
-              <VStack p="0 3rem" w={{ base: "full", xl: "65%" }}>
-                {itemUnits.map((item, i) => (
-                  <UnitItemPriceInput
-                    key={i}
-                    item={item}
-                    i={i}
-                    handleChangeItemUnit={handleChangeItemUnit}
-                    handleDeleteItemUnit={handleDeleteItemUnit}
-                  />
-                ))}
-              </VStack>
-            </Flex>
-          ) : (
+        {/* <Box w="full">
+          {isMultipleUnitsChecked ? (
+           null ) : (
             <Flex w="full">
               <Box w="full">
                 <FormControl id={`unit-name`} w="70%">
@@ -225,19 +190,74 @@ const AddItemManualForm: React.FC<Props> = ({}): JSX.Element => {
             </Flex>
           )}
         </Box>
-        <FormControl id="track">
-          <Checkbox>
-            <Flex>
-              <Box m="0 1rem">Track this item &nbsp;</Box>
-              <Box>
-                <RiShieldCheckFill size="2rem" color="#69E4A6" d="inline" />
-              </Box>
-            </Flex>
-          </Checkbox>
-          <FormHelperText fontSize="1.2rem">
-            You will be notified when this item becomes low in stock
-          </FormHelperText>
-        </FormControl>
+         */}
+        <Box w="full">
+          <VStack {...vStackProps} spacing="3.1rem" alignItems="flex-start">
+            {itemUnits.map((item, i) => (
+              <Stack
+                key={i}
+                w="full"
+                border={isMultipleUnitsChecked ? '0.1rem solid' : undefined}
+                borderColor="grey.200"
+                borderRadius=".5rem"
+                p={isMultipleUnitsChecked ? '1.6rem 3rem' : undefined}
+                direction={['column', 'row']}
+                spacing={isMultipleUnitsChecked ? '1rem' : '5rem'}
+              >
+                <UnitItemNameSelect
+                  item={item}
+                  i={i}
+                  handleChangeItemUnit={handleChangeItemUnit}
+                  unitOptions={unitOptions}
+                  isMultipleUnitsChecked={isMultipleUnitsChecked}
+                />
+                <UnitItemPriceInput
+                  item={item}
+                  i={i}
+                  handleChangeItemUnit={handleChangeItemUnit}
+                  isMultipleUnitsChecked={isMultipleUnitsChecked}
+                />
+                {itemUnits.length > 1 && (
+                  <IconButton
+                    size="sm"
+                    variant="unstyled"
+                    aria-label="Delete unit"
+                    icon={<RiDeleteBin2Line size="2.5rem" />}
+                    color="grey"
+                    ml="auto"
+                    onClick={(_) => handleDeleteItemUnit(i)}
+                  />
+                )}
+              </Stack>
+            ))}
+          </VStack>
+        </Box>
+
+        <Flex justifyContent="space-between" w="full">
+          <FormControl id="track">
+            <Checkbox>
+              <Flex>
+                <Box m="0 1rem">Track this item &nbsp;</Box>
+                <Box>
+                  <RiShieldCheckFill size="2rem" color="#69E4A6" d="inline" />
+                </Box>
+              </Flex>
+            </Checkbox>
+            <FormHelperText fontSize="1.2rem">
+              You will be notified when this item becomes low in stock
+            </FormHelperText>
+          </FormControl>
+          {isMultipleUnitsChecked && (
+            <Button
+              variant="goldOutline"
+              size="sm"
+              borderRadius="1rem"
+              onClick={handleAddItemUnitSlot}
+            >
+              Add another unit
+            </Button>
+          )}
+        </Flex>
       </VStack>
     </Box>
   );

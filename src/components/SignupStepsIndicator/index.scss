@@ -1,0 +1,15 @@
+.step-circle {
+  &--has-tail {
+    position: relative;
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 22rem;
+      height: 0.05rem;
+      background: lightgray;
+      opacity: 0.5 !important;
+      left: 4rem;
+    }
+  }
+}
