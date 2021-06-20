@@ -33,24 +33,13 @@ const CreateStore: React.FC<SignupFormProps> = ({
   allSignupFormData,
 }) => {
   const schema = yup.object().shape(createStoreFormValidator);
-  const {
-    register,
-    handleSubmit,
-    errors,
-    setError,
-    clearErrors,
-    setValue,
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+  const { register, handleSubmit, errors, setError, clearErrors, setValue } =
+    useForm({
+      resolver: yupResolver(schema),
+    });
   useEffect(() => {
-    const {
-      storename,
-      storeaddress,
-      industry,
-      location,
-      contactnumber,
-    } = allSignupFormData;
+    const { storename, storeaddress, industry, location, contactnumber } =
+      allSignupFormData;
     storename && setValue('storename', storename);
     storeaddress && setValue('storeaddress', storeaddress);
     industry && setIndustry(industry);
@@ -74,8 +63,6 @@ const CreateStore: React.FC<SignupFormProps> = ({
   ];
   const [industry, setIndustry] = useState('');
   const validateSubmit = (values) => {
-    console.log(industry);
-
     if (!industry) {
       return setError('industry', {
         type: 'manual',

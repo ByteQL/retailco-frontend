@@ -31,16 +31,12 @@ const AddItemModal: React.FC<ModalContentProps & UseModalProps> = ({
   const [selectedTab, setSelectedTab] = useState(0);
   const [itemUnits, setItemUnits] = useState<Array<ItemUnit>>([]);
 
-  const handleAddItem = () => {
-    console.log(itemUnits);
-  };
-
   const ModalHeader = () => (
     <Box>
-      <Flex>
+      <Flex fontSize="1.8rem">
         <FaArrowLeft
           size="1.4rem"
-          style={{ height: '2.1rem', marginRight: '1rem' }}
+          style={{ height: '2.7rem', marginRight: '2rem' }}
         />
         Add Item
       </Flex>
@@ -54,7 +50,12 @@ const AddItemModal: React.FC<ModalContentProps & UseModalProps> = ({
   );
   const ModalFooter = () => (
     <Box>
-      <Button variant="solid" ml="auto" onClick={handleAddItem}>
+      <Button
+        variant="solid"
+        ml="auto"
+        type="submit"
+        form="add-item-form--manual"
+      >
         Add item
       </Button>
     </Box>

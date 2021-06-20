@@ -1,6 +1,6 @@
 const heading = {
   baseStyle: {
-    fontWeight: 600,
+    fontWeight: 500,
   },
   sizes: {
     lg: {

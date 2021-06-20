@@ -7,17 +7,12 @@ import {
   FormLabel,
   Heading,
   Input,
+  NumberInput,
+  NumberInputField,
   SimpleGrid,
 } from '@chakra-ui/react';
 
-const UnitItemPriceInput = ({
-  item,
-  i,
-  handleChangeItemUnit,
-  isMultipleUnitsChecked,
-}) => {
-  console.log(item);
-
+const UnitItemPriceInput = ({ i, isMultipleUnitsChecked, register }) => {
   return (
     <Box key={i} w={{ xl: '65rem' }}>
       {isMultipleUnitsChecked && (
@@ -30,36 +25,33 @@ const UnitItemPriceInput = ({
       <SimpleGrid mt="3rem" columns={3} spacing={10}>
         <FormControl id={`quantity-${i}`}>
           <FormLabel>Product Quantity</FormLabel>
-          <Input
-            size="md"
-            placeholder="0.00"
-            value={item.quantity}
-            onChange={(e) =>
-              handleChangeItemUnit(i, 'quantity', e.target.value)
-            }
-          />
+          <NumberInput size="md">
+            <NumberInputField
+              placeholder="0"
+              ref={register}
+              name={`quantity-${i}`}
+            />
+          </NumberInput>
         </FormControl>
         <FormControl id={`cost_price-${i}`}>
           <FormLabel>Cost price</FormLabel>
-          <Input
-            size="md"
-            placeholder="0"
-            value={item.cost_price}
-            onChange={(e) =>
-              handleChangeItemUnit(i, 'cost_price', e.target.value)
-            }
-          />
+          <NumberInput size="md">
+            <NumberInputField
+              placeholder="0.00"
+              ref={register}
+              name={`cost_price-${i}`}
+            />
+          </NumberInput>
         </FormControl>
         <FormControl id={`selling_price-${i}`}>
           <FormLabel>Selling price</FormLabel>
-          <Input
-            size="md"
-            placeholder="0"
-            value={item.selling_price}
-            onChange={(e) =>
-              handleChangeItemUnit(i, 'selling_price', e.target.value)
-            }
-          />
+          <NumberInput size="md">
+            <NumberInputField
+              placeholder="0.00"
+              ref={register}
+              name={`selling_price-${i}`}
+            />
+          </NumberInput>
         </FormControl>
       </SimpleGrid>
     </Box>

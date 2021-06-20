@@ -1,6 +1,6 @@
 const form = {
   // The parts of the component
-  parts: ['control', 'errorMessage'],
+  parts: ['control', 'errorMessage', 'label'],
   // The base styles for each part
   baseStyle: {
     errorMessage: {

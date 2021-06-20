@@ -17,6 +17,7 @@ import {
   IconButton,
   Button,
   Stack,
+  Heading,
 } from '@chakra-ui/react';
 import { RiShieldCheckFill, RiDeleteBin2Line } from 'react-icons/ri';
 
@@ -37,7 +38,7 @@ const AddItemManualForm: React.FC<Props> = ({
   itemUnits,
   setItemUnits,
 }): JSX.Element => {
-  const { register, errors } = useForm();
+  const { register, errors, handleSubmit, reset } = useForm();
 
   const [isMultipleUnitsChecked, setIsMultipleUnitsChecked] = useState(false);
 
@@ -50,18 +51,6 @@ const AddItemManualForm: React.FC<Props> = ({
   const vStackProps = {
     spacing: '3rem',
     w: 'full',
-  };
-  const handleChangeItemUnit = (index: number, prop: any, value: string) => {
-    // create a copy of itemUnits
-    const itemUnitsCopy = itemUnits;
-    // find item by id from itemUnitsCopy array
-    let selectedItem = itemUnitsCopy.find((item, i) => i === index);
-    // add new dropdown value to selected item
-    if (selectedItem) {
-      selectedItem[prop] = value;
-      itemUnitsCopy[index] = selectedItem;
-      setItemUnits(itemUnitsCopy);
-    }
   };
 
   const handleDeleteItemUnit = (index: number) => {
@@ -77,16 +66,33 @@ const AddItemManualForm: React.FC<Props> = ({
     const { checked } = e.target;
 
     setIsMultipleUnitsChecked(checked);
+    reset();
     if (!checked) {
       setItemUnits(defaultItemUnits);
     }
   };
   const unitOptions = ['peice', 'carton'];
 
-  console.log(itemUnits);
-
   return (
-    <Box as="form" p={{ xl: '5rem 8rem' }} id="add-item-form--manual">
+    <Box
+      as="form"
+      p={{ xl: '5rem 8rem' }}
+      id="add-item-form--manual"
+      onSubmit={handleSubmit((values) => {
+        const itemUnitsCopy = itemUnits;
+
+        // ItemUnits array contains i empty objects
+
+        for (let i = 0; i < itemUnitsCopy.length; i++) {
+          // loop through, give each empty object at index i a property with a value from the global form values object
+          itemUnitsCopy[i].unit_name = values[`unit_name-${i}`];
+          itemUnitsCopy[i].quantity = values[`quantity-${i}`];
+          itemUnitsCopy[i].cost_price = values[`cost_price-${i}`];
+          itemUnitsCopy[i].selling_price = values[`selling_price-${i}`];
+        }
+        console.log(itemUnitsCopy);
+      })}
+    >
       <Flex>
         <VStack {...vStackProps} alignItems="left">
           <FormControl
@@ -143,7 +149,15 @@ const AddItemManualForm: React.FC<Props> = ({
           </FormControl>
         </VStack>
         <VStack {...vStackProps}>
-          <Box>Drag and drop</Box>
+          <Box w="full">
+            <Heading size="sm">
+              Image{' '}
+              <Box as="span" fontWeight={400} fontStyle="italic">
+                (Optional)
+              </Box>
+            </Heading>
+            <Box></Box>
+          </Box>
         </VStack>
       </Flex>
 
@@ -157,40 +171,6 @@ const AddItemManualForm: React.FC<Props> = ({
             Carton, Dozen
           </FormHelperText>
         </FormControl>
-        {/* <Box w="full">
-          {isMultipleUnitsChecked ? (
-           null ) : (
-            <Flex w="full">
-              <Box w="full">
-                <FormControl id={`unit-name`} w="70%">
-                  <FormLabel mt="3rem">Item Unit</FormLabel>
-                  <Flex>
-                    <Select placeholder="e.g Peice" w="70%" h="4rem">
-                      {unitOptions.map((unitOption) => (
-                        <option value={unitOption} key={unitOption}>
-                          {unitOption}
-                        </option>
-                      ))}
-                    </Select>
-                  </Flex>
-                </FormControl>
-              </Box>
-              <Box w="full" pl="3rem">
-                <SimpleGrid mt="3rem" columns={2} spacing={10}>
-                  <FormControl id={`unit-price`}>
-                    <FormLabel>Item Price</FormLabel>
-                    <Input size="md" placeholder="0.00" />
-                  </FormControl>
-                  <FormControl id={`unit-quantity`}>
-                    <FormLabel>Item Quantity</FormLabel>
-                    <Input size="md" placeholder="0" />
-                  </FormControl>
-                </SimpleGrid>
-              </Box>
-            </Flex>
-          )}
-        </Box>
-         */}
         <Box w="full">
           <VStack {...vStackProps} spacing="3.1rem" alignItems="flex-start">
             {itemUnits.map((item, i) => (
@@ -205,17 +185,15 @@ const AddItemManualForm: React.FC<Props> = ({
                 spacing={isMultipleUnitsChecked ? '1rem' : '5rem'}
               >
                 <UnitItemNameSelect
-                  item={item}
                   i={i}
-                  handleChangeItemUnit={handleChangeItemUnit}
                   unitOptions={unitOptions}
                   isMultipleUnitsChecked={isMultipleUnitsChecked}
+                  register={register}
                 />
                 <UnitItemPriceInput
-                  item={item}
                   i={i}
-                  handleChangeItemUnit={handleChangeItemUnit}
                   isMultipleUnitsChecked={isMultipleUnitsChecked}
+                  register={register}
                 />
                 {itemUnits.length > 1 && (
                   <IconButton
