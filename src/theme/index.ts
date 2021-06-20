@@ -24,6 +24,7 @@ const overrides = {
     Select,
     Modal,
     Tabs,
+    NumberInput: Input,
 
     // Other components go here
   },

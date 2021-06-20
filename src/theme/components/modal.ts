@@ -5,9 +5,10 @@ const modal = {
       fontSize: '1.4rem',
     },
     header: {
-      padding: '5rem',
+      marginTop: '3rem',
+      padding: '1rem 5rem',
       '.chakra-tabs__tablist': {
-        '>button': {
+        '> button': {
           margin: '1rem 2rem',
         },
       },

@@ -12,7 +12,7 @@ const link = {
       lineHeight: '2.2rem',
       display: 'flex',
       padding: '1.5rem 6.5rem',
-      fontWeight: 'bold',
+      fontWeight: '500',
       _hover: {
         textDecoration: 'none',
       },

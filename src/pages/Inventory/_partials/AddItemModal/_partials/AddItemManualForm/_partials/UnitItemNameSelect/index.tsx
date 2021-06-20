@@ -5,19 +5,17 @@ import {
   Flex,
   Heading,
   Select,
-  IconButton,
 } from '@chakra-ui/react';
 import { RiDeleteBinLine } from 'react-icons/ri';
 
 const UnitItemNameSelect = ({
-  item,
   i,
-  handleChangeItemUnit,
   unitOptions,
   isMultipleUnitsChecked,
+  register,
 }) => {
   return (
-    <FormControl key={`unit-name-${i}`} w={{ xl: '30rem' }}>
+    <FormControl key={`unit_name-${i}`} w={{ xl: '30rem' }}>
       {isMultipleUnitsChecked && (
         <Heading as="h3" size="sm">
           Unit {i + 1}
@@ -26,10 +24,10 @@ const UnitItemNameSelect = ({
       <FormLabel mt="3rem">Item Unit</FormLabel>
       <Flex>
         <Select
-          value={item.value}
           placeholder="e.g Peice"
-          onChange={(e) => handleChangeItemUnit(i, 'value', e.target.value)}
           h="4rem"
+          ref={register}
+          name={`unit_name-${i}`}
         >
           {unitOptions.map((unitOption) => (
             <option value={unitOption} key={unitOption}>
