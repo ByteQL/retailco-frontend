@@ -27,7 +27,7 @@ const UnitItemPriceInput = ({ i, isMultipleUnitsChecked, register }) => {
           <FormLabel>Product Quantity</FormLabel>
           <NumberInput size="md">
             <NumberInputField
-              placeholder="0.00"
+              placeholder="0"
               ref={register}
               name={`quantity-${i}`}
             />
@@ -37,7 +37,7 @@ const UnitItemPriceInput = ({ i, isMultipleUnitsChecked, register }) => {
           <FormLabel>Cost price</FormLabel>
           <NumberInput size="md">
             <NumberInputField
-              placeholder="0"
+              placeholder="0.00"
               ref={register}
               name={`cost_price-${i}`}
             />
@@ -47,7 +47,7 @@ const UnitItemPriceInput = ({ i, isMultipleUnitsChecked, register }) => {
           <FormLabel>Selling price</FormLabel>
           <NumberInput size="md">
             <NumberInputField
-              placeholder="0"
+              placeholder="0.00"
               ref={register}
               name={`selling_price-${i}`}
             />

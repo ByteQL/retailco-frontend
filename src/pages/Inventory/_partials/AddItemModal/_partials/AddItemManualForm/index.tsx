@@ -17,6 +17,7 @@ import {
   IconButton,
   Button,
   Stack,
+  Heading,
 } from '@chakra-ui/react';
 import { RiShieldCheckFill, RiDeleteBin2Line } from 'react-icons/ri';
 
@@ -148,7 +149,15 @@ const AddItemManualForm: React.FC<Props> = ({
           </FormControl>
         </VStack>
         <VStack {...vStackProps}>
-          <Box>Drag and drop</Box>
+          <Box w="full">
+            <Heading size="sm">
+              Image{' '}
+              <Box as="span" fontWeight={400} fontStyle="italic">
+                (Optional)
+              </Box>
+            </Heading>
+            <Box></Box>
+          </Box>
         </VStack>
       </Flex>
 
