@@ -8,11 +8,11 @@ interface Props {
   color?: string;
 }
 
-const Marker: React.FC<Props> = ({ color }) => (
+const Marker: React.FC<Props> = React.forwardRef(({ color, children }, ref) => (
   <Box className="rco-marker" bg={color} pos="static">
-    !
+    {children || <>!</>}
   </Box>
-);
+));
 
 Marker.defaultProps = {
   color: '#e94560',
