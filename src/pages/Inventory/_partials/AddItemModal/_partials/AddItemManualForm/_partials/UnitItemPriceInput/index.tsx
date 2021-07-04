@@ -6,13 +6,43 @@ import {
   FormControl,
   FormLabel,
   Heading,
-  Input,
+  Flex,
   NumberInput,
   NumberInputField,
   SimpleGrid,
+  Tooltip,
 } from '@chakra-ui/react';
+import Marker from 'components/Marker';
+import { useState } from 'react';
+import formatWithCommas from 'utils/formatWithCommas';
 
-const UnitItemPriceInput = ({ i, isMultipleUnitsChecked, register }) => {
+interface Props {
+  i: number;
+  isMultipleUnitsChecked: boolean;
+  register: any;
+  setValue: any;
+}
+
+const UnitItemPriceInput: React.FC<Props> = ({
+  i,
+  isMultipleUnitsChecked,
+  register,
+  setValue,
+}) => {
+  const [costPriceValue, setCostPriceValue] = useState('');
+  const [sellingPriceValue, setSellingPriceValue] = useState('');
+
+  const handleCostPriceChange = (e) => {
+    const formatted = formatWithCommas(e.target.value);
+    setValue(`cost_price-${i}`, formatted);
+    setCostPriceValue(formatted);
+  };
+  const handleSellingPriceChange = (e) => {
+    const formatted = formatWithCommas(e.target.value);
+    setValue(`selling_price-${i}`, formatted);
+    setSellingPriceValue(formatted);
+  };
+
   return (
     <Box key={i} w={{ xl: '65rem' }}>
       {isMultipleUnitsChecked && (
@@ -34,22 +64,45 @@ const UnitItemPriceInput = ({ i, isMultipleUnitsChecked, register }) => {
           </NumberInput>
         </FormControl>
         <FormControl id={`cost_price-${i}`}>
-          <FormLabel>Cost price</FormLabel>
-          <NumberInput size="md">
+          <FormLabel>
+            <Flex justifyContent="space-between">
+              <Box>Cost price</Box>
+              <Tooltip placement="top" label="How much did you buy this item?">
+                <Box variant="ghost">
+                  <Marker color="brand.primary">i</Marker>
+                </Box>
+              </Tooltip>
+            </Flex>
+          </FormLabel>
+          <NumberInput size="md" value={costPriceValue} type="text">
             <NumberInputField
-              placeholder="0.00"
               ref={register}
               name={`cost_price-${i}`}
+              placeholder="0.00"
+              onChange={handleCostPriceChange}
             />
           </NumberInput>
         </FormControl>
         <FormControl id={`selling_price-${i}`}>
-          <FormLabel>Selling price</FormLabel>
-          <NumberInput size="md">
+          <FormLabel>
+            <Flex justifyContent="space-between">
+              <Box>Selling price</Box>
+              <Tooltip
+                placement="top"
+                label="How much are you selling this item?"
+              >
+                <Box variant="ghost">
+                  <Marker color="brand.primary">i</Marker>
+                </Box>
+              </Tooltip>
+            </Flex>
+          </FormLabel>
+          <NumberInput size="md" value={sellingPriceValue} type="text">
             <NumberInputField
-              placeholder="0.00"
               ref={register}
               name={`selling_price-${i}`}
+              placeholder="0.00"
+              onChange={handleSellingPriceChange}
             />
           </NumberInput>
         </FormControl>

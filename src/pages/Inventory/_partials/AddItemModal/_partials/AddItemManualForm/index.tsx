@@ -11,7 +11,6 @@ import {
   FormHelperText,
   FormLabel,
   Input,
-  Select,
   Textarea,
   VStack,
   IconButton,
@@ -28,19 +27,26 @@ import { useForm } from 'react-hook-form';
 import UnitItemNameSelect from './_partials/UnitItemNameSelect';
 import UnitItemPriceInput from './_partials/UnitItemPriceInput';
 import { useEffect } from 'react';
+import { FaCamera } from 'react-icons/fa';
+import FileUpload from 'components/FileUpload';
+
+import CustomSelect from 'components/CustomSelect';
 
 interface Props {
   itemUnits: any[];
   setItemUnits: (unit: any) => void;
 }
 
-const AddItemManualForm: React.FC<Props> = ({
-  itemUnits,
-  setItemUnits,
-}): JSX.Element => {
-  const { register, errors, handleSubmit, reset } = useForm();
+const AddItemManualForm: React.FC<Props> = ({ itemUnits, setItemUnits }) => {
+  const { register, errors, handleSubmit, reset, control, setValue } =
+    useForm();
 
   const [isMultipleUnitsChecked, setIsMultipleUnitsChecked] = useState(false);
+
+  const [unitOptions, setUnitOptions] = useState([
+    { label: 'peice', value: 'peice' },
+    { label: 'carton', value: 'carton' },
+  ]);
 
   const defaultItemUnits = [{}];
 
@@ -70,28 +76,46 @@ const AddItemManualForm: React.FC<Props> = ({
     if (!checked) {
       setItemUnits(defaultItemUnits);
     }
+    return e.target.checked;
   };
-  const unitOptions = ['peice', 'carton'];
+
+  const handleFormSubmit = (values) => {
+    console.log(values);
+
+    const itemUnitsCopy = itemUnits;
+
+    // ItemUnits array contains i empty objects
+
+    for (let i = 0; i < itemUnitsCopy.length; i++) {
+      // loop through, give each empty object at index i a property with a value from the global form values object
+      itemUnitsCopy[i].unit_name = values[`unit_name-${i}`];
+      itemUnitsCopy[i].quantity = values[`quantity-${i}`];
+      itemUnitsCopy[i].cost_price = values[`cost_price-${i}`];
+      itemUnitsCopy[i].selling_price = values[`selling_price-${i}`];
+    }
+    console.log(itemUnitsCopy);
+  };
+
+  const validateFiles = (value: FileList) => {
+    if (value.length < 1) {
+      return 'Files is required';
+    }
+    for (const file of Array.from(value)) {
+      const fsMb = file.size / (1024 * 1024);
+      const MAX_FILE_SIZE = 10;
+      if (fsMb > MAX_FILE_SIZE) {
+        return 'Max file size 10mb';
+      }
+    }
+    return true;
+  };
 
   return (
     <Box
       as="form"
       p={{ xl: '5rem 8rem' }}
       id="add-item-form--manual"
-      onSubmit={handleSubmit((values) => {
-        const itemUnitsCopy = itemUnits;
-
-        // ItemUnits array contains i empty objects
-
-        for (let i = 0; i < itemUnitsCopy.length; i++) {
-          // loop through, give each empty object at index i a property with a value from the global form values object
-          itemUnitsCopy[i].unit_name = values[`unit_name-${i}`];
-          itemUnitsCopy[i].quantity = values[`quantity-${i}`];
-          itemUnitsCopy[i].cost_price = values[`cost_price-${i}`];
-          itemUnitsCopy[i].selling_price = values[`selling_price-${i}`];
-        }
-        console.log(itemUnitsCopy);
-      })}
+      onSubmit={handleSubmit(handleFormSubmit)}
     >
       <Flex>
         <VStack {...vStackProps} alignItems="left">
@@ -134,14 +158,15 @@ const AddItemManualForm: React.FC<Props> = ({
             isInvalid={errors.itemcategory}
           >
             <FormLabel>Item Name</FormLabel>
-            <Select
+
+            <CustomSelect
               name="itemcategory"
+              placeholder="Select category"
               h="4rem"
               ref={register}
-              placeholder="Select category"
-            >
-              <option value="food">Food</option>
-            </Select>
+              options={[{ value: 'food', label: 'Food' }]}
+              size="sm"
+            />
 
             {errors.itemcategory && (
               <FormErrorMessage>{errors.itemcategory.message}</FormErrorMessage>
@@ -149,14 +174,44 @@ const AddItemManualForm: React.FC<Props> = ({
           </FormControl>
         </VStack>
         <VStack {...vStackProps}>
-          <Box w="full">
+          <Box w="full" m="0 5rem">
             <Heading size="sm">
               Image{' '}
               <Box as="span" fontWeight={400} fontStyle="italic">
                 (Optional)
               </Box>
             </Heading>
-            <Box></Box>
+            <FormControl isInvalid={!!errors.file_} isRequired>
+              <FileUpload accept={'image/*'} register={register}>
+                <Flex
+                  border="1px dashed"
+                  borderRadius="5px"
+                  w="full"
+                  h="100%"
+                  p="6rem 0"
+                  mt="1rem"
+                  alignItems="center"
+                  flexDir="column"
+                >
+                  <FaCamera size="7rem" color="grey" />
+                  <Box mt="2rem" textAlign="center">
+                    <Box fontSize="1.8rem" fontWeight="600">
+                      Drag and drop image
+                    </Box>
+                    <p>
+                      or{' '}
+                      <Box as="span" role="button" color="brand.primary">
+                        browse
+                      </Box>{' '}
+                      to select image
+                    </p>
+                  </Box>
+                </Flex>
+              </FileUpload>
+              <FormErrorMessage>
+                {errors.file_ && errors?.file_.message}
+              </FormErrorMessage>
+            </FormControl>
           </Box>
         </VStack>
       </Flex>
@@ -188,12 +243,13 @@ const AddItemManualForm: React.FC<Props> = ({
                   i={i}
                   unitOptions={unitOptions}
                   isMultipleUnitsChecked={isMultipleUnitsChecked}
-                  register={register}
+                  control={control}
                 />
                 <UnitItemPriceInput
                   i={i}
                   isMultipleUnitsChecked={isMultipleUnitsChecked}
                   register={register}
+                  setValue={setValue}
                 />
                 {itemUnits.length > 1 && (
                   <IconButton
@@ -217,7 +273,7 @@ const AddItemManualForm: React.FC<Props> = ({
               <Flex>
                 <Box m="0 1rem">Track this item &nbsp;</Box>
                 <Box>
-                  <RiShieldCheckFill size="2rem" color="#69E4A6" d="inline" />
+                  <RiShieldCheckFill size="2rem" color="#69E4A6" />
                 </Box>
               </Flex>
             </Checkbox>

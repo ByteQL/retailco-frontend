@@ -2,7 +2,9 @@ const tabs = {
   baseStyle: {
     tablist: {
       justifyContent: 'center',
-      '.css-1emig0n': {
+
+      '.chakra-tabs__tab': {
+        borderBottomWidth: '3px',
         fontSize: '1.4rem',
         margin: '0 1rem',
         paddingBottom: '1rem',
