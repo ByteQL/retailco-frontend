@@ -31,7 +31,6 @@ const DashboardPageWrapper: React.FC<Props> = ({
           p={{ base: '2rem', xl: '5rem' }}
           flex="1 1 0%"
           ml={{ xl: '25.5rem' }}
-          overflow="scroll"
         >
           <DashboardPageWrapperHeader />
           <Box as="main" p="5rem 0">
