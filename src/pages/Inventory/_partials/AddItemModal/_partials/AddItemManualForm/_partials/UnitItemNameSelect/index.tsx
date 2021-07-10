@@ -39,7 +39,7 @@ const UnitItemNameSelect: React.FC<Props> = ({
           name={`unit_name-${i}`}
           render={({ onChange, value, ref }) => (
             <CustomSelect
-              placeholder="e.g Peice"
+              placeholder="e.g Pece"
               value={unitOptions.find((c) => c.value === value)}
               onChange={(val) => onChange(val.value)}
               options={unitOptions}
