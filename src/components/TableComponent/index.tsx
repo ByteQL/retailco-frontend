@@ -37,7 +37,7 @@ const DataTable: React.FC<DataTableProps & BoxProps> = ({
   ...rest
 }) => {
   return (
-    <Box className="data-table" overflow="scroll" minH="50vh">
+    <Box className="data-table" overflow="auto" minH="50vh">
       <HStack spacing="1rem">
         <BaseSelect
           placeholder="sort by"

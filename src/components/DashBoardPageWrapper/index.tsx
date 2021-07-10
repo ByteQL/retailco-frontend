@@ -24,7 +24,7 @@ const DashboardPageWrapper: React.FC<Props> = ({
     // if (!isAuthenticated) history.push('/');
   }, []);
   return (
-    <Box className="dashboards-wrapper" bg="blue.100" h="100vh">
+    <Box className="dashboards-wrapper" bg="blue.100" h="100%">
       <Flex>
         <SideMenu />
         <Box
