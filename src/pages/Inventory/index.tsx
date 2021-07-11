@@ -113,23 +113,26 @@ const Inventory: React.FC = () => {
   return (
     <Box>
       <PageHeader>
-        <Flex alignItems="center" flexDir={{ base: 'column', xl: 'row' }}>
+        <Flex
+          alignItems="center"
+          justifyContent="space-between"
+          flexDir={{ base: 'column', xl: 'row' }}
+        >
           <Heading size="lg">Inventory</Heading>
-          <Button
-            variant="goldOutline"
-            size="sm"
-            leftIcon={<FaPlus />}
-            ml={{ xl: '5rem' }}
-            onClick={onOpen}
-          >
-            Add New Product
-          </Button>
           <Tag bg="rgba(9, 76, 141, 0.1)" p="1.5rem 2rem" m="0 auto">
             <Text size="sm">Total stock value:</Text>&nbsp;
             <Heading size="sm">
               &#x20A6;&nbsp;{formatWithCommas(999000000000)}
             </Heading>
           </Tag>
+          <Button
+            variant="goldOutline"
+            size="sm"
+            leftIcon={<FaPlus />}
+            onClick={onOpen}
+          >
+            Add New Product
+          </Button>
         </Flex>
       </PageHeader>
       <CustomCard>
