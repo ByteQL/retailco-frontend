@@ -23,7 +23,7 @@ interface Props {
   setValue: any;
 }
 
-const UnitItemPriceInput: React.FC<Props> = ({
+const UnitProductPriceInput: React.FC<Props> = ({
   i,
   isMultipleUnitsChecked,
   register,
@@ -110,4 +110,4 @@ const UnitItemPriceInput: React.FC<Props> = ({
     </Box>
   );
 };
-export default UnitItemPriceInput;
+export default UnitProductPriceInput;

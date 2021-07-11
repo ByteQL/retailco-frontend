@@ -16,20 +16,20 @@ import {
 } from '@chakra-ui/react';
 import ModalComponent from 'components/ModalComponent';
 import { FaArrowLeft } from 'react-icons/fa';
-import AddItemManualForm from './_partials/AddItemManualForm';
+import AddProductManualForm from './_partials/AddProductManualForm';
 
-const AddItemModal: React.FC<ModalContentProps & UseModalProps> = ({
+const AddProductModal: React.FC<ModalContentProps & UseModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  interface ItemUnit {
+  interface ProductUnit {
     value?: string;
     cost_price?: string;
     selling_price?: string;
     quantity?: string;
   }
   const [selectedTab, setSelectedTab] = useState(0);
-  const [itemUnits, setItemUnits] = useState<Array<ItemUnit>>([]);
+  const [productUnits, setProductUnits] = useState<Array<ProductUnit>>([]);
 
   const ModalHeader = () => (
     <Box>
@@ -38,7 +38,7 @@ const AddItemModal: React.FC<ModalContentProps & UseModalProps> = ({
           size="1.4rem"
           style={{ height: '2.7rem', marginRight: '2rem' }}
         />
-        Add Item
+        Add Product
       </Flex>
       <Tabs onChange={setSelectedTab} index={selectedTab}>
         <TabList borderBottom="none">
@@ -54,9 +54,9 @@ const AddItemModal: React.FC<ModalContentProps & UseModalProps> = ({
         variant="solid"
         ml="auto"
         type="submit"
-        form="add-item-form--manual"
+        form="add-product-form--manual"
       >
-        Add item
+        Add product
       </Button>
     </Box>
   );
@@ -72,9 +72,9 @@ const AddItemModal: React.FC<ModalContentProps & UseModalProps> = ({
       <Tabs index={selectedTab}>
         <TabPanels>
           <TabPanel>
-            <AddItemManualForm
-              itemUnits={itemUnits}
-              setItemUnits={setItemUnits}
+            <AddProductManualForm
+              productUnits={productUnits}
+              setProductUnits={setProductUnits}
             />
           </TabPanel>
           <TabPanel>Templates</TabPanel>
@@ -83,4 +83,4 @@ const AddItemModal: React.FC<ModalContentProps & UseModalProps> = ({
     </ModalComponent>
   );
 };
-export default AddItemModal;
+export default AddProductModal;
