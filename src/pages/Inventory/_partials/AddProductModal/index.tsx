@@ -66,7 +66,7 @@ const AddProductModal: React.FC<ModalContentProps & UseModalProps> = ({
       modalHeaderProps={{ pb: 0 }}
       isOpen={isOpen}
       onClose={onClose}
-      width="110rem"
+      width="112.6rem"
       footer={<ModalFooter />}
     >
       <Tabs index={selectedTab}>
