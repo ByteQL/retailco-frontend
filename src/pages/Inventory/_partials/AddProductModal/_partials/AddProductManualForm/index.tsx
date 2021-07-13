@@ -195,7 +195,7 @@ const AddProductManualForm: React.FC<Props> = ({
             id="productcategory"
             isInvalid={errors.productcategory}
           >
-            <FormLabel>Product Name</FormLabel>
+            <FormLabel>Product Category</FormLabel>
 
             <CustomSelect
               name="productcategory"
