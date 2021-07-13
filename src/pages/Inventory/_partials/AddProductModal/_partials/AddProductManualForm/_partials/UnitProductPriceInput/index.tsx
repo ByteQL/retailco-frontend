@@ -76,7 +76,13 @@ const UnitProductPriceInput: React.FC<Props> = ({
           <FormLabel>
             <Flex justifyContent="space-between">
               <Box>Cost price</Box>
-              <Tooltip placement="top" label="How much did you buy this item?">
+              <Tooltip
+                placement="top"
+                label="How much did you buy this item?"
+                w="16rem"
+                bg="grey.verylightgrey"
+                color="black"
+              >
                 <Box variant="ghost">
                   <Marker color="brand.primary">i</Marker>
                 </Box>
@@ -105,6 +111,9 @@ const UnitProductPriceInput: React.FC<Props> = ({
               <Tooltip
                 placement="top"
                 label="How much are you selling this item?"
+                w="16rem"
+                bg="grey.verylightgrey"
+                color="black"
               >
                 <Box variant="ghost">
                   <Marker color="brand.primary">i</Marker>
