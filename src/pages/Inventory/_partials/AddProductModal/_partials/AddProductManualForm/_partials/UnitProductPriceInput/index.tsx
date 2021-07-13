@@ -5,6 +5,7 @@ import {
   Box,
   FormControl,
   FormLabel,
+  FormErrorMessage,
   Heading,
   Flex,
   NumberInput,
@@ -21,6 +22,7 @@ interface Props {
   isMultipleUnitsChecked: boolean;
   register: any;
   setValue: any;
+  errors: any;
 }
 
 const UnitProductPriceInput: React.FC<Props> = ({
@@ -28,19 +30,20 @@ const UnitProductPriceInput: React.FC<Props> = ({
   isMultipleUnitsChecked,
   register,
   setValue,
+  errors,
 }) => {
   const [costPriceValue, setCostPriceValue] = useState('');
   const [sellingPriceValue, setSellingPriceValue] = useState('');
 
   const handleCostPriceChange = (e) => {
     const formatted = formatWithCommas(e.target.value);
-    setValue(`cost_price-${i}`, formatted);
-    setCostPriceValue(formatted);
+    // setValue(`cost_price-${i}`, formatted);
+    formatted && setCostPriceValue(formatted);
   };
   const handleSellingPriceChange = (e) => {
     const formatted = formatWithCommas(e.target.value);
-    setValue(`selling_price-${i}`, formatted);
-    setSellingPriceValue(formatted);
+    // setValue(`selling_price-${i}`, formatted);
+    formatted && setSellingPriceValue(formatted);
   };
 
   return (
@@ -53,17 +56,23 @@ const UnitProductPriceInput: React.FC<Props> = ({
         </Heading>
       )}
       <SimpleGrid mt="3rem" columns={3} spacing={10}>
-        <FormControl id={`quantity-${i}`}>
+        <FormControl id={`quantity-${i}`} isInvalid={!!errors[`quantity-${i}`]}>
           <FormLabel>Product Quantity</FormLabel>
           <NumberInput size="md">
             <NumberInputField
               placeholder="0"
-              ref={register}
+              ref={register({ required: 'Required' })}
               name={`quantity-${i}`}
             />
           </NumberInput>
+          <FormErrorMessage>
+            {errors[`quantity-${i}`]?.message}
+          </FormErrorMessage>
         </FormControl>
-        <FormControl id={`cost_price-${i}`}>
+        <FormControl
+          id={`cost_price-${i}`}
+          isInvalid={!!errors[`cost_price-${i}`]}
+        >
           <FormLabel>
             <Flex justifyContent="space-between">
               <Box>Cost price</Box>
@@ -76,14 +85,20 @@ const UnitProductPriceInput: React.FC<Props> = ({
           </FormLabel>
           <NumberInput size="md" value={costPriceValue} type="text">
             <NumberInputField
-              ref={register}
+              ref={register({ required: 'Required' })}
               name={`cost_price-${i}`}
               placeholder="0.00"
               onChange={handleCostPriceChange}
             />
           </NumberInput>
+          <FormErrorMessage>
+            {errors[`cost_price-${i}`]?.message}
+          </FormErrorMessage>
         </FormControl>
-        <FormControl id={`selling_price-${i}`}>
+        <FormControl
+          id={`selling_price-${i}`}
+          isInvalid={!!errors[`selling_price-${i}`]}
+        >
           <FormLabel>
             <Flex justifyContent="space-between">
               <Box>Selling price</Box>
@@ -99,12 +114,15 @@ const UnitProductPriceInput: React.FC<Props> = ({
           </FormLabel>
           <NumberInput size="md" value={sellingPriceValue} type="text">
             <NumberInputField
-              ref={register}
+              ref={register({ required: 'Required' })}
               name={`selling_price-${i}`}
               placeholder="0.00"
               onChange={handleSellingPriceChange}
             />
           </NumberInput>
+          <FormErrorMessage>
+            {errors[`selling_price-${i}`]?.message}
+          </FormErrorMessage>
         </FormControl>
       </SimpleGrid>
     </Box>

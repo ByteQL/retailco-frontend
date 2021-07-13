@@ -76,3 +76,8 @@ body {
 .custom-select {
   width: 100%;
 }
+
+.chakra-toast__inner {
+  max-width: unset !important;
+  margin-bottom: 0px !important;
+}

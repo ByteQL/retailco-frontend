@@ -17,11 +17,14 @@ import {
   Button,
   Stack,
   Heading,
+  useToast,
+  Link,
 } from '@chakra-ui/react';
 import { RiShieldCheckFill, RiDeleteBin2Line } from 'react-icons/ri';
 
 // third party libraries
 import { useForm } from 'react-hook-form';
+import { Link as RouterLink } from 'react-router-dom';
 
 // UI components
 import UnitProductNameSelect from './_partials/UnitProductNameSelect';
@@ -29,8 +32,8 @@ import UnitProductPriceInput from './_partials/UnitProductPriceInput';
 import { useEffect } from 'react';
 import { FaCamera } from 'react-icons/fa';
 import FileUpload from 'components/FileUpload';
-
 import CustomSelect from 'components/CustomSelect';
+import routePaths from 'utils/routePaths';
 
 interface Props {
   productUnits: any[];
@@ -50,6 +53,8 @@ const AddProductManualForm: React.FC<Props> = ({
     { label: 'peice', value: 'peice' },
     { label: 'carton', value: 'carton' },
   ]);
+
+  const toast = useToast({ id: 'addProductSuccess' });
 
   const defaultProductUnits = [{}];
 
@@ -96,6 +101,34 @@ const AddProductManualForm: React.FC<Props> = ({
       productUnitsCopy[i].cost_price = values[`cost_price-${i}`];
       productUnitsCopy[i].selling_price = values[`selling_price-${i}`];
     }
+
+    toast({
+      position: 'bottom',
+      isClosable: false,
+      duration: null,
+      render: () => (
+        <Box
+          bg="green.toast"
+          color="#fff"
+          borderRadius="1rem 1rem 0 0"
+          p="1.5rem 2rem"
+          textAlign="center"
+          w={{ base: '90vw', lg: '80vw' }}
+          m="0 auto"
+          fontSize="1.4rem"
+        >
+          Item added to store successfully. Items can be found in your{' '}
+          <Link
+            onClick={() => {
+              window.location.href = routePaths.inventory;
+            }}
+            color="orange.link"
+          >
+            Inventory
+          </Link>
+        </Box>
+      ),
+    });
   };
 
   const validateFiles = (value: FileList) => {
@@ -111,6 +144,7 @@ const AddProductManualForm: React.FC<Props> = ({
     }
     return true;
   };
+  console.log(errors);
 
   return (
     <Box
@@ -132,7 +166,7 @@ const AddProductManualForm: React.FC<Props> = ({
               placeholder="Indomie"
               name="productname"
               size="md"
-              ref={register}
+              ref={register({ required: 'Required' })}
               autoFocus
             />
             {errors.productname && (
@@ -141,14 +175,14 @@ const AddProductManualForm: React.FC<Props> = ({
           </FormControl>
           <FormControl
             w={{ xl: '80%' }}
-            id="productcategory"
+            id="productdescription"
             isInvalid={errors.productdescription}
           >
             <FormLabel>Product Description</FormLabel>
             <Textarea
               placeholder="Product colour, size, material"
               name="productdescription"
-              ref={register}
+              ref={register({ required: 'Required' })}
             />
             {errors.productdescription && (
               <FormErrorMessage>
@@ -167,7 +201,7 @@ const AddProductManualForm: React.FC<Props> = ({
               name="productcategory"
               placeholder="Select category"
               h="4rem"
-              ref={register}
+              ref={register({ required: 'Required' })}
               options={[{ value: 'food', label: 'Food' }]}
               size="sm"
             />
@@ -187,7 +221,7 @@ const AddProductManualForm: React.FC<Props> = ({
                 (Optional)
               </Box>
             </Heading>
-            <FormControl isInvalid={!!errors.file_} isRequired>
+            <FormControl isInvalid={!!errors.file_}>
               <FileUpload accept={'image/*'} register={register}>
                 <Flex
                   border="1px dashed"
@@ -250,12 +284,14 @@ const AddProductManualForm: React.FC<Props> = ({
                   unitOptions={unitOptions}
                   isMultipleUnitsChecked={isMultipleUnitsChecked}
                   control={control}
+                  errors={errors}
                 />
                 <UnitProductPriceInput
                   i={i}
                   isMultipleUnitsChecked={isMultipleUnitsChecked}
                   register={register}
                   setValue={setValue}
+                  errors={errors}
                 />
                 {productUnits.length > 1 && (
                   <IconButton

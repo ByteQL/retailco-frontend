@@ -9,6 +9,7 @@ interface Props {
   unitOptions: any[];
   isMultipleUnitsChecked: boolean;
   control: any;
+  errors: any;
 }
 
 const UnitproductnameSelect: React.FC<Props> = ({
@@ -16,9 +17,15 @@ const UnitproductnameSelect: React.FC<Props> = ({
   unitOptions,
   isMultipleUnitsChecked,
   control,
+  errors,
 }) => {
   return (
-    <FormControl key={`unit_name-${i}`} w={{ xl: '30rem' }} className="control">
+    <FormControl
+      key={`unit_name-${i}`}
+      w={{ xl: '30rem' }}
+      className="control"
+      isInvalid={!!errors[`unit_name-${i}`]}
+    >
       {isMultipleUnitsChecked && (
         <Heading as="h3" size="sm">
           Unit {i + 1}
