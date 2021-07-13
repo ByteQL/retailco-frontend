@@ -22,6 +22,12 @@ const style = {
       '200': '#D1DAE0',
       verylightgrey: '#E0E0E0',
     },
+    green: {
+      toast: '#296931',
+    },
+    orange: {
+      link: '#FFE2C9',
+    },
   },
   fontSizes: {
     xs: '1rem',

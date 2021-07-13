@@ -17,27 +17,33 @@ import {
   Button,
   Stack,
   Heading,
+  useToast,
+  Link,
 } from '@chakra-ui/react';
 import { RiShieldCheckFill, RiDeleteBin2Line } from 'react-icons/ri';
 
 // third party libraries
 import { useForm } from 'react-hook-form';
+import { Link as RouterLink } from 'react-router-dom';
 
 // UI components
-import UnitItemNameSelect from './_partials/UnitItemNameSelect';
-import UnitItemPriceInput from './_partials/UnitItemPriceInput';
+import UnitProductNameSelect from './_partials/UnitProductNameSelect';
+import UnitProductPriceInput from './_partials/UnitProductPriceInput';
 import { useEffect } from 'react';
 import { FaCamera } from 'react-icons/fa';
 import FileUpload from 'components/FileUpload';
-
 import CustomSelect from 'components/CustomSelect';
+import routePaths from 'utils/routePaths';
 
 interface Props {
-  itemUnits: any[];
-  setItemUnits: (unit: any) => void;
+  productUnits: any[];
+  setProductUnits: (unit: any) => void;
 }
 
-const AddItemManualForm: React.FC<Props> = ({ itemUnits, setItemUnits }) => {
+const AddProductManualForm: React.FC<Props> = ({
+  productUnits,
+  setProductUnits,
+}) => {
   const { register, errors, handleSubmit, reset, control, setValue } =
     useForm();
 
@@ -48,10 +54,12 @@ const AddItemManualForm: React.FC<Props> = ({ itemUnits, setItemUnits }) => {
     { label: 'carton', value: 'carton' },
   ]);
 
-  const defaultItemUnits = [{}];
+  const toast = useToast({ id: 'addProductSuccess' });
+
+  const defaultProductUnits = [{}];
 
   useEffect(() => {
-    setItemUnits(defaultItemUnits);
+    setProductUnits(defaultProductUnits);
   }, []);
 
   const vStackProps = {
@@ -59,13 +67,13 @@ const AddItemManualForm: React.FC<Props> = ({ itemUnits, setItemUnits }) => {
     w: 'full',
   };
 
-  const handleDeleteItemUnit = (index: number) => {
-    let otherItemUnits = itemUnits.filter((item, i) => i !== index);
-    setItemUnits(otherItemUnits);
+  const handleDeleteProductUnit = (index: number) => {
+    let otherProductUnits = productUnits.filter((product, i) => i !== index);
+    setProductUnits(otherProductUnits);
   };
 
-  const handleAddItemUnitSlot = () => {
-    setItemUnits([...itemUnits, {}]);
+  const handleAddProductUnitSlot = () => {
+    setProductUnits([...productUnits, {}]);
   };
 
   const handleIsMultipleUnitsCheckedChange = (e: any) => {
@@ -74,7 +82,7 @@ const AddItemManualForm: React.FC<Props> = ({ itemUnits, setItemUnits }) => {
     setIsMultipleUnitsChecked(checked);
     reset();
     if (!checked) {
-      setItemUnits(defaultItemUnits);
+      setProductUnits(defaultProductUnits);
     }
     return e.target.checked;
   };
@@ -82,18 +90,45 @@ const AddItemManualForm: React.FC<Props> = ({ itemUnits, setItemUnits }) => {
   const handleFormSubmit = (values) => {
     console.log(values);
 
-    const itemUnitsCopy = itemUnits;
+    const productUnitsCopy = productUnits;
 
-    // ItemUnits array contains i empty objects
+    // ProductUnits array contains i empty objects
 
-    for (let i = 0; i < itemUnitsCopy.length; i++) {
+    for (let i = 0; i < productUnitsCopy.length; i++) {
       // loop through, give each empty object at index i a property with a value from the global form values object
-      itemUnitsCopy[i].unit_name = values[`unit_name-${i}`];
-      itemUnitsCopy[i].quantity = values[`quantity-${i}`];
-      itemUnitsCopy[i].cost_price = values[`cost_price-${i}`];
-      itemUnitsCopy[i].selling_price = values[`selling_price-${i}`];
+      productUnitsCopy[i].unit_name = values[`unit_name-${i}`];
+      productUnitsCopy[i].quantity = values[`quantity-${i}`];
+      productUnitsCopy[i].cost_price = values[`cost_price-${i}`];
+      productUnitsCopy[i].selling_price = values[`selling_price-${i}`];
     }
-    console.log(itemUnitsCopy);
+
+    toast({
+      position: 'bottom',
+      isClosable: false,
+      duration: null,
+      render: () => (
+        <Box
+          bg="green.toast"
+          color="#fff"
+          borderRadius="1rem 1rem 0 0"
+          p="1.5rem 2rem"
+          textAlign="center"
+          w={{ base: '90vw', lg: '80vw' }}
+          m="0 auto"
+          fontSize="1.4rem"
+        >
+          Item added to store successfully. Items can be found in your{' '}
+          <Link
+            onClick={() => {
+              window.location.href = routePaths.inventory;
+            }}
+            color="orange.link"
+          >
+            Inventory
+          </Link>
+        </Box>
+      ),
+    });
   };
 
   const validateFiles = (value: FileList) => {
@@ -109,67 +144,72 @@ const AddItemManualForm: React.FC<Props> = ({ itemUnits, setItemUnits }) => {
     }
     return true;
   };
+  console.log(errors);
 
   return (
     <Box
       as="form"
       p={{ xl: '5rem 8rem' }}
-      id="add-item-form--manual"
+      id="add-product-form--manual"
       onSubmit={handleSubmit(handleFormSubmit)}
     >
       <Flex>
         <VStack {...vStackProps} alignItems="left">
           <FormControl
             w={{ xl: '80%' }}
-            id="itemname"
-            isInvalid={errors.itemname}
+            id="productname"
+            isInvalid={errors.productname}
           >
-            <FormLabel>Item Name</FormLabel>
+            <FormLabel>Product Name</FormLabel>
             <Input
               type="text"
               placeholder="Indomie"
-              name="itemname"
+              name="productname"
               size="md"
-              ref={register}
+              ref={register({ required: 'Required' })}
               autoFocus
             />
-            {errors.itemname && (
-              <FormErrorMessage>{errors.itemname.message}</FormErrorMessage>
+            {errors.productname && (
+              <FormErrorMessage>{errors.productname.message}</FormErrorMessage>
             )}
           </FormControl>
           <FormControl
             w={{ xl: '80%' }}
-            id="itemcategory"
-            isInvalid={errors.itemcategory}
+            id="productdescription"
+            isInvalid={errors.productdescription}
           >
-            <FormLabel>Item Category</FormLabel>
+            <FormLabel>Product Description</FormLabel>
             <Textarea
-              placeholder="Item colour, size, material"
-              name="itemcategory"
-              ref={register}
+              placeholder="Product colour, size, material"
+              name="productdescription"
+              ref={register({ required: 'Required' })}
             />
-            {errors.itemcategory && (
-              <FormErrorMessage>{errors.itemcategory.message}</FormErrorMessage>
+            {errors.productdescription && (
+              <FormErrorMessage>
+                {errors.productdescription.message}
+              </FormErrorMessage>
             )}
           </FormControl>
           <FormControl
             w={{ xl: '80%' }}
-            id="itemcategory"
-            isInvalid={errors.itemcategory}
+            id="productcategory"
+            isInvalid={errors.productcategory}
           >
-            <FormLabel>Item Name</FormLabel>
+            <FormLabel>Product Name</FormLabel>
 
             <CustomSelect
-              name="itemcategory"
+              name="productcategory"
               placeholder="Select category"
               h="4rem"
-              ref={register}
+              ref={register({ required: 'Required' })}
               options={[{ value: 'food', label: 'Food' }]}
               size="sm"
             />
 
-            {errors.itemcategory && (
-              <FormErrorMessage>{errors.itemcategory.message}</FormErrorMessage>
+            {errors.productcategory && (
+              <FormErrorMessage>
+                {errors.productcategory.message}
+              </FormErrorMessage>
             )}
           </FormControl>
         </VStack>
@@ -181,7 +221,7 @@ const AddItemManualForm: React.FC<Props> = ({ itemUnits, setItemUnits }) => {
                 (Optional)
               </Box>
             </Heading>
-            <FormControl isInvalid={!!errors.file_} isRequired>
+            <FormControl isInvalid={!!errors.file_}>
               <FileUpload accept={'image/*'} register={register}>
                 <Flex
                   border="1px dashed"
@@ -219,16 +259,16 @@ const AddItemManualForm: React.FC<Props> = ({ itemUnits, setItemUnits }) => {
       <VStack spacing="3rem" mt="3rem" w="full">
         <FormControl id="isMultipleUnitsChecked">
           <Checkbox onChange={handleIsMultipleUnitsCheckedChange}>
-            <Box ml={{ xl: '1rem' }}>This item has multiple units</Box>
+            <Box ml={{ xl: '1rem' }}>This product has multiple units</Box>
           </Checkbox>
           <FormHelperText fontSize="1.2rem">
-            Select this option if this item is sold in multiple units like KG,
-            Carton, Dozen
+            Select this option if this product is sold in multiple units like
+            KG, Carton, Dozen
           </FormHelperText>
         </FormControl>
         <Box w="full">
           <VStack {...vStackProps} spacing="3.1rem" alignItems="flex-start">
-            {itemUnits.map((item, i) => (
+            {productUnits.map((product, i) => (
               <Stack
                 key={i}
                 w="full"
@@ -239,19 +279,21 @@ const AddItemManualForm: React.FC<Props> = ({ itemUnits, setItemUnits }) => {
                 direction={['column', 'row']}
                 spacing={isMultipleUnitsChecked ? '1rem' : '5rem'}
               >
-                <UnitItemNameSelect
+                <UnitProductNameSelect
                   i={i}
                   unitOptions={unitOptions}
                   isMultipleUnitsChecked={isMultipleUnitsChecked}
                   control={control}
+                  errors={errors}
                 />
-                <UnitItemPriceInput
+                <UnitProductPriceInput
                   i={i}
                   isMultipleUnitsChecked={isMultipleUnitsChecked}
                   register={register}
                   setValue={setValue}
+                  errors={errors}
                 />
-                {itemUnits.length > 1 && (
+                {productUnits.length > 1 && (
                   <IconButton
                     size="sm"
                     variant="unstyled"
@@ -259,7 +301,7 @@ const AddItemManualForm: React.FC<Props> = ({ itemUnits, setItemUnits }) => {
                     icon={<RiDeleteBin2Line size="2.5rem" />}
                     color="grey"
                     ml="auto"
-                    onClick={(_) => handleDeleteItemUnit(i)}
+                    onClick={(_) => handleDeleteProductUnit(i)}
                   />
                 )}
               </Stack>
@@ -269,16 +311,16 @@ const AddItemManualForm: React.FC<Props> = ({ itemUnits, setItemUnits }) => {
 
         <Flex justifyContent="space-between" w="full">
           <FormControl id="track">
-            <Checkbox>
+            <Checkbox name="track" ref={register}>
               <Flex>
-                <Box m="0 1rem">Track this item &nbsp;</Box>
+                <Box m="0 1rem">Track this product &nbsp;</Box>
                 <Box>
                   <RiShieldCheckFill size="2rem" color="#69E4A6" />
                 </Box>
               </Flex>
             </Checkbox>
             <FormHelperText fontSize="1.2rem">
-              You will be notified when this item becomes low in stock
+              You will be notified when this product becomes low in stock
             </FormHelperText>
           </FormControl>
           {isMultipleUnitsChecked && (
@@ -286,7 +328,7 @@ const AddItemManualForm: React.FC<Props> = ({ itemUnits, setItemUnits }) => {
               variant="goldOutline"
               size="sm"
               borderRadius="1rem"
-              onClick={handleAddItemUnitSlot}
+              onClick={handleAddProductUnitSlot}
             >
               Add another unit
             </Button>
@@ -296,4 +338,4 @@ const AddItemManualForm: React.FC<Props> = ({ itemUnits, setItemUnits }) => {
     </Box>
   );
 };
-export default AddItemManualForm;
+export default AddProductManualForm;

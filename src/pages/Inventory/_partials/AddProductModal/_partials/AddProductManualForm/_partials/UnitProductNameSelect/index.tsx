@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  FormControl,
-  FormLabel,
-  Flex,
-  Heading,
-  Select,
-} from '@chakra-ui/react';
-import { RiDeleteBinLine } from 'react-icons/ri';
+import { FormControl, FormLabel, Flex, Heading } from '@chakra-ui/react';
 import CustomSelect from 'components/CustomSelect';
 
 import { Controller } from 'react-hook-form';
@@ -16,22 +9,29 @@ interface Props {
   unitOptions: any[];
   isMultipleUnitsChecked: boolean;
   control: any;
+  errors: any;
 }
 
-const UnitItemNameSelect: React.FC<Props> = ({
+const UnitproductnameSelect: React.FC<Props> = ({
   i,
   unitOptions,
   isMultipleUnitsChecked,
   control,
+  errors,
 }) => {
   return (
-    <FormControl key={`unit_name-${i}`} w={{ xl: '30rem' }} className="control">
+    <FormControl
+      key={`unit_name-${i}`}
+      w={{ xl: '30rem' }}
+      className="control"
+      isInvalid={!!errors[`unit_name-${i}`]}
+    >
       {isMultipleUnitsChecked && (
         <Heading as="h3" size="sm">
           Unit {i + 1}
         </Heading>
       )}
-      <FormLabel mt="3rem">Item Unit</FormLabel>
+      <FormLabel mt="3rem">Product Unit</FormLabel>
       <Flex w="full">
         <Controller
           control={control}
@@ -52,4 +52,4 @@ const UnitItemNameSelect: React.FC<Props> = ({
   );
 };
 
-export default UnitItemNameSelect;
+export default UnitproductnameSelect;

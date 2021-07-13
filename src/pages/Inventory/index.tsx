@@ -19,7 +19,7 @@ import { RiShieldCheckFill } from 'react-icons/ri';
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
 import CustomCard from 'components/CardComponent';
 import PageHeader from 'components/PageHeader';
-import AddItemModal from './_partials/AddItemModal';
+import AddProductModal from './_partials/AddProductModal';
 
 const Inventory: React.FC = () => {
   const disclosureObject = useDisclosure();
@@ -56,7 +56,7 @@ const Inventory: React.FC = () => {
       render: (record) =>
         record && <RiShieldCheckFill size="1.8rem" color="#69E4A6" />,
     },
-    { title: 'Item unit', dataIndex: 'unit' },
+    { title: 'Product unit', dataIndex: 'unit' },
     {
       title: 'Quantity',
       dataIndex: 'quantity',
@@ -113,29 +113,32 @@ const Inventory: React.FC = () => {
   return (
     <Box>
       <PageHeader>
-        <Flex alignItems="center" flexDir={{ base: 'column', xl: 'row' }}>
+        <Flex
+          alignItems="center"
+          justifyContent="space-between"
+          flexDir={{ base: 'column', xl: 'row' }}
+        >
           <Heading size="lg">Inventory</Heading>
-          <Button
-            variant="goldOutline"
-            size="sm"
-            leftIcon={<FaPlus />}
-            ml={{ xl: '5rem' }}
-            onClick={onOpen}
-          >
-            Add New Item
-          </Button>
           <Tag bg="rgba(9, 76, 141, 0.1)" p="1.5rem 2rem" m="0 auto">
             <Text size="sm">Total stock value:</Text>&nbsp;
             <Heading size="sm">
               &#x20A6;&nbsp;{formatWithCommas(999000000000)}
             </Heading>
           </Tag>
+          <Button
+            variant="goldOutline"
+            size="sm"
+            leftIcon={<FaPlus />}
+            onClick={onOpen}
+          >
+            Add New Product
+          </Button>
         </Flex>
       </PageHeader>
       <CustomCard>
         <DataTable columns={columns} dataSource={dataSource} />
       </CustomCard>
-      <AddItemModal {...disclosureObject} />
+      <AddProductModal {...disclosureObject} />
     </Box>
   );
 };
