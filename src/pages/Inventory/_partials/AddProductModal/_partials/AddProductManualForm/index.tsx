@@ -34,6 +34,7 @@ import { FaCamera } from 'react-icons/fa';
 import FileUpload from 'components/FileUpload';
 import CustomSelect from 'components/CustomSelect';
 import routePaths from 'utils/routePaths';
+import CustomToast from 'components/CustomToast';
 
 interface Props {
   productUnits: any[];
@@ -105,18 +106,9 @@ const AddProductManualForm: React.FC<Props> = ({
     toast({
       position: 'bottom',
       isClosable: false,
-      duration: null,
+      duration: 5000,
       render: () => (
-        <Box
-          bg="green.toast"
-          color="#fff"
-          borderRadius="1rem 1rem 0 0"
-          p="1.5rem 2rem"
-          textAlign="center"
-          w={{ base: '90vw', lg: '80vw' }}
-          m="0 auto"
-          fontSize="1.4rem"
-        >
+        <CustomToast>
           Item added to store successfully. Items can be found in your{' '}
           <Link
             onClick={() => {
@@ -126,7 +118,7 @@ const AddProductManualForm: React.FC<Props> = ({
           >
             Inventory
           </Link>
-        </Box>
+        </CustomToast>
       ),
     });
   };
@@ -198,12 +190,14 @@ const AddProductManualForm: React.FC<Props> = ({
             <FormLabel>Product Category</FormLabel>
 
             <CustomSelect
+              chakraProps={{
+                h: '4rem',
+                ref: register({ required: 'Required' }),
+                size: 'sm',
+              }}
               name="productcategory"
               placeholder="Select category"
-              h="4rem"
-              ref={register({ required: 'Required' })}
               options={[{ value: 'food', label: 'Food' }]}
-              size="sm"
             />
 
             {errors.productcategory && (
