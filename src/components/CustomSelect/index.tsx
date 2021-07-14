@@ -18,8 +18,9 @@ import {
   useColorModeValue,
   createIcon,
   BoxProps,
+  ComponentDefaultProps,
 } from '@chakra-ui/react';
-import { SelectComponentsProps } from 'react-select/src/Select';
+import { NamedProps, SelectComponentsProps } from 'react-select/src/Select';
 
 // Taken from the @chakra-ui/icons package to prevent needing it as a dependency
 // https://github.com/chakra-ui/chakra-ui/blob/main/packages/icons/src/ChevronDown.tsx
@@ -259,105 +260,104 @@ const chakraComponents = {
   },
 };
 
-interface ChakraReactSelectProps {
-  reactSelectProps?: SelectComponentsProps;
-  ref: any;
-  styles: any;
-  components: any;
-  theme: any;
-  size: string;
+interface ChakraReactSelectProps extends BoxProps {
+  ref?: any;
+  styles?: any;
+  components?: any;
+  theme?: any;
+  size?: string;
 }
 
-const ChakraReactSelect: React.FC<BoxProps & ChakraReactSelectProps> =
-  React.forwardRef(
-    (
-      {
-        children,
-        reactSelectProps,
-        styles = {},
-        components = {},
-        theme = () => ({}),
-        size = 'md',
+const ChakraReactSelect: React.FC<ChakraReactSelectProps> = React.forwardRef(
+  (
+    {
+      children,
+      styles = {},
+      components = {},
+      theme = () => ({}),
 
-        ...props
-      },
-      ref,
-    ) => {
-      const chakraTheme = useTheme();
+      size = 'md',
 
-      // The chakra theme styles for TagCloseButton when focused
-      const closeButtonFocus =
-        chakraTheme.components.Tag.baseStyle.closeButton._focus;
-      const multiValueRemoveFocusStyle = {
-        background: closeButtonFocus.bg,
-        boxShadow: chakraTheme.shadows[closeButtonFocus.boxShadow],
-      };
-
-      // The chakra UI global placeholder color
-      // https://github.com/chakra-ui/chakra-ui/blob/main/packages/theme/src/styles.ts#L13
-      const placeholderColor = useColorModeValue(
-        chakraTheme.colors.gray[400],
-        chakraTheme.colors.whiteAlpha[400],
-      );
-
-      // Ensure that the size used is one of the options, either `sm`, `md`, or `lg`
-      let realSize = size;
-      const sizeOptions = ['sm', 'md', 'lg'];
-      if (!sizeOptions.includes(size)) {
-        realSize = 'md';
-      }
-
-      const select = cloneElement(children, {
-        components: {
-          ...chakraComponents,
-          ...components,
-        },
-        styles: {
-          ...chakraStyles,
-          ...styles,
-        },
-        theme: (baseTheme) => {
-          const propTheme = theme(baseTheme);
-
-          return {
-            ...baseTheme,
-            ...propTheme,
-            colors: {
-              ...baseTheme.colors,
-              neutral50: placeholderColor, // placeholder text color
-              neutral40: placeholderColor, // noOptionsMessage color
-              ...propTheme.colors,
-            },
-            spacing: {
-              ...baseTheme.spacing,
-              ...propTheme.spacing,
-            },
-          };
-        },
-        size: realSize,
-        multiValueRemoveFocusStyle,
-        ...props,
-      });
-
-      return select;
+      ...props
     },
-  );
-const Select: React.FC<any> = React.forwardRef<
-  any,
-  BoxProps & ChakraReactSelectProps
->((props, ref) => (
-  <ChakraReactSelect {...props} ref={ref}>
-    <ReactSelect className="custom-select" {...props.reactSelectProps} />
+    ref,
+  ) => {
+    const chakraTheme = useTheme();
+
+    // The chakra theme styles for TagCloseButton when focused
+    const closeButtonFocus =
+      chakraTheme.components.Tag.baseStyle.closeButton._focus;
+    const multiValueRemoveFocusStyle = {
+      background: closeButtonFocus.bg,
+      boxShadow: chakraTheme.shadows[closeButtonFocus.boxShadow],
+    };
+
+    // The chakra UI global placeholder color
+    // https://github.com/chakra-ui/chakra-ui/blob/main/packages/theme/src/styles.ts#L13
+    const placeholderColor = useColorModeValue(
+      chakraTheme.colors.gray[400],
+      chakraTheme.colors.whiteAlpha[400],
+    );
+
+    // Ensure that the size used is one of the options, either `sm`, `md`, or `lg`
+    let realSize = size;
+    const sizeOptions = ['sm', 'md', 'lg'];
+    if (!sizeOptions.includes(size)) {
+      realSize = 'md';
+    }
+
+    const select = cloneElement(children, {
+      components: {
+        ...chakraComponents,
+        ...components,
+      },
+      styles: {
+        ...chakraStyles,
+        ...styles,
+      },
+      theme: (baseTheme) => {
+        const propTheme = theme(baseTheme);
+
+        return {
+          ...baseTheme,
+          ...propTheme,
+          colors: {
+            ...baseTheme.colors,
+            neutral50: placeholderColor, // placeholder text color
+            neutral40: placeholderColor, // noOptionsMessage color
+            ...propTheme.colors,
+          },
+          spacing: {
+            ...baseTheme.spacing,
+            ...propTheme.spacing,
+          },
+        };
+      },
+      size: realSize,
+      multiValueRemoveFocusStyle,
+      ...props,
+    });
+
+    return select;
+  },
+);
+
+interface Props extends NamedProps {
+  chakraProps: ChakraReactSelectProps;
+}
+
+const Select: React.FC<Props> = React.forwardRef<any, Props>((props, ref) => (
+  <ChakraReactSelect {...props.chakraProps}>
+    <ReactSelect className="custom-select" {...props} />
   </ChakraReactSelect>
 ));
 
-const AsyncSelect: React.FC<any> = React.forwardRef<
-  any,
-  BoxProps & ChakraReactSelectProps
->((props, ref) => (
-  <ChakraReactSelect {...props} ref={ref}>
-    <AsyncReactSelect {...props.reactSelectProps} />
-  </ChakraReactSelect>
-));
+const AsyncSelect: React.FC<Props> = React.forwardRef<any, Props>(
+  (props, ref) => (
+    <ChakraReactSelect {...props.chakraProps} ref={ref}>
+      <AsyncReactSelect className="custom-select" {...props} />
+    </ChakraReactSelect>
+  ),
+);
 
 export { Select as default, AsyncSelect };

@@ -41,9 +41,14 @@ const UnitproductnameSelect: React.FC<Props> = ({
             <CustomSelect
               placeholder="e.g Peice"
               value={unitOptions.find((c) => c.value === value)}
-              onChange={(val) => onChange(val.value)}
+              onChange={(val) => onChange(val?.value)}
               options={unitOptions}
-              ref={ref}
+              chakraProps={{
+                h: '4rem',
+                ref,
+                size: 'sm',
+              }}
+              name="productcategory"
             />
           )}
         />
